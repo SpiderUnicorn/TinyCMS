@@ -20,6 +20,7 @@ dotnet run
 
 ## Example json structure for Nodes.json
 
+```json
 {
     "isDirty": false,
     "rootNode": {
@@ -56,3 +57,4 @@ dotnet run
     },
     "relations": []
 }
+```
