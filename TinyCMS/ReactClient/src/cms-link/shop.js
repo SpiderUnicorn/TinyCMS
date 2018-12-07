@@ -1,4 +1,4 @@
-import { setSession } from './connection';
+import { setSession } from 'cmslink';
 
 const createCart = () => {
     return fetch('/api/shop/cart').then(res => res.json());
@@ -22,7 +22,7 @@ const getCart = (orderId) => {
 
 export const getOrder = (orderId) => {
     return ((orderId && orderId.length) ? getCart(orderId) : createCart()).then(order => {
-        if (order && order.id)
+        if (!!order && order.id)
             setSession({ cart: { order, orderId: order.id } });
         return order;
     });

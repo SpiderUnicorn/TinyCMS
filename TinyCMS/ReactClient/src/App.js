@@ -1,33 +1,27 @@
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Editor from './cms-link/AdminComponents/Editor';
-
-import { componentRegistry } from './cms-link/connection';
+import { componentRegistry, CMSLink, createLinkWrapper } from 'react-cms-link';
+import { Editor, ObjectEditor } from 'react-cms-editor';
 import RouteLinks from './cms-link/Components/RouteLinks';
-import CMSLink from './cms-link/Components/CMSLink';
-import LinkedRoutes from './cms-link/Components/LinkedRoutes';
-import ObjectEditor from './cms-link/AdminComponents/ObjectEditor';
 
+import LinkedRoutes from './cms-link/Components/LinkedRoutes';
+//import ObjectEditor from 'react-cms-editor';
 import Index from './Pages/Index';
 import Docs from './Pages/Docs';
 import QuickStart from './Pages/QuickStart';
 import Faq from './Pages/Faq';
 import { mergeLinkedComponents } from './cms-link/Components';
 import { mergeShopComponents } from './cms-link/ShopComponents';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes, faCaretRight, faPlusSquare, faSquare, faSpinner, faWifi, faPen } from '@fortawesome/free-solid-svg-icons';
 import './scss/app.scss';
-import './scss/editor.scss';
+import './../node_modules/react-cms-editor/build/main.css';
 import Cart from './cms-link/ShopComponents/Cart';
-import { createLinkWrapper } from './cms-link/createLinkWrapper';
-
-library.add(faTimes, faCaretRight, faPlusSquare, faSquare, faSpinner, faWifi, faPen);
 
 function Ucfirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-const styleKeys = ['backgroundColor', 'color', 'padding', 'margin'];
+const styleKeys = ['backgroundColor', 'color', 'padding', 'margin', 'outline'];
 
 const getUnitString = (unit, styleObj, name) => {
   for (var key in unit) {
