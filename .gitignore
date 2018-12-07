@@ -42,3 +42,6 @@ TinyCMS/ReactClient/src/Pages/questions.js
 
 # dotCover
 *.dotCover
+
+# code
+.vscode/
