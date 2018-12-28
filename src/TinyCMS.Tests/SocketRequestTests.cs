@@ -34,7 +34,7 @@ namespace TinyCMS.Tests
                 var request = requestTypeString + "foo";
 
                 // Act
-                var socketRequest = new SocketRequest(request);
+                var socketRequest = SocketRequest.Parse(request);
 
                 // Assert
                 socketRequest.RequestType.Should().Be(requestTypeEnum);
@@ -47,7 +47,7 @@ namespace TinyCMS.Tests
                 var request = "?root";
 
                 // Act
-                var socketRequest = new SocketRequest(request);
+                var socketRequest = SocketRequest.Parse(request);
 
                 // Assert
                 Assert.Equal("root", socketRequest.Data);
@@ -60,7 +60,7 @@ namespace TinyCMS.Tests
                 var request = "##any-token##";
 
                 // Act
-                var socketRequest = new SocketRequest(request);
+                var socketRequest = SocketRequest.Parse(request);
 
                 // Assert
                 socketRequest.Data.Should().Be("any-token");
@@ -73,7 +73,7 @@ namespace TinyCMS.Tests
                 var request = "+" + "{\"foo\":\"bar\"}";
 
                 // Act
-                var socketRequest = new SocketRequest(request);
+                var socketRequest = SocketRequest.Parse(request);
 
                 // Assert
                 socketRequest.Data.Should().Be("{\"foo\":\"bar\"}");
@@ -89,7 +89,7 @@ namespace TinyCMS.Tests
                 var request = anyRequestType + "from=me&neigh&to=you:{en_hest}";
 
                 // Act
-                var socketRequest = new SocketRequest(request);
+                var socketRequest = SocketRequest.Parse(request);
 
                 // Assert
                 var query = socketRequest.QueryString;
@@ -97,6 +97,19 @@ namespace TinyCMS.Tests
                 query["to"].Should().Be("you");
                 query["neigh"].Should().Be("1");
                 socketRequest.Data.Should().Be("{en_hest}");
+            }
+
+            [Fact]
+            public void too_short_requests_are_not_parsed()
+            {
+                // Arrange
+                var request = "+";
+
+                // Act
+                Action parse = () => SocketRequest.Parse(request);
+
+                // Assert
+                parse.Should().Throw<ArgumentException>();
             }
 
         }

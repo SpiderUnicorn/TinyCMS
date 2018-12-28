@@ -69,7 +69,7 @@ public class SocketConnectionHandler
 
             if (result.Count > 1)
             {
-                var parsedRequest = new SocketRequest(buffer, result.Count);
+                var parsedRequest = SocketRequest.Parse(buffer, result.Count);
                 if (parsedRequest.RequestType == RequestTypeEnum.AuthToken)
                 {
                     CurrentToken = parsedRequest.Data;
