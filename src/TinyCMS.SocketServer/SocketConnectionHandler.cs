@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.WebSockets;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using TinyCMS;
-using TinyCMS.SocketServer;
 using TinyCMS.Interfaces;
+using TinyCMS.SocketServer;
 
 public class SocketConnectionHandler
 {
@@ -36,8 +36,8 @@ public class SocketConnectionHandler
 
         if (IsOpen)
         {
-            var dataToSend = serializer.ToArraySegment(container.RootNode, CurrentToken, 3, 0, true);
-            socket.SendAsync(dataToSend, WebSocketMessageType.Text, true, CancellationToken.None);
+            var dataToSend = serializer.ToArraySegment(container.RootNode, CurrentToken, depth : 3, level : 0, fetchRelations : true);
+            socket.SendAsync(dataToSend, WebSocketMessageType.Text, endOfMessage : true, cancellationToken : CancellationToken.None);
         }
     }
 
@@ -84,6 +84,7 @@ public class SocketConnectionHandler
         container.OnChildrenChanged -= Container_OnChildrenChanged;
     }
 
+    // TODO: does nothing
     void Container_OnChildrenChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         string parentNodeId = string.Empty;
@@ -100,7 +101,6 @@ public class SocketConnectionHandler
                 SendNode(parent);
         }
     }
-
 
     private void ConnectChangeHandlers()
     {
