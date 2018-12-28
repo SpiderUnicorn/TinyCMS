@@ -1,13 +1,15 @@
 ﻿using System;
-using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using TinyCMS.Interfaces;
 
 namespace TinyCMS
 {
-
+    /// <summary>
+    /// A server for handling websocket connections for a container
+    /// </summary>
     public class SocketNodeServer
     {
         private INodeTypeFactory factory;
@@ -16,11 +18,11 @@ namespace TinyCMS
 
         private List<SocketConnectionHandler> activeConnections = new List<SocketConnectionHandler>();
 
-        public SocketNodeServer(IContainer cnt, INodeTypeFactory factory, INodeSerializer ser)
+        public SocketNodeServer(IContainer container, INodeTypeFactory factory, INodeSerializer serializer)
         {
             this.factory = factory;
-            this.container = cnt;
-            this.serializer = ser;
+            this.container = container;
+            this.serializer = serializer;
         }
 
         public async Task HandleNodeRequest(HttpContext context, WebSocket webSocket)

@@ -13,13 +13,7 @@ public class SocketConnectionHandler
     private readonly INodeSerializer serializer;
     private readonly INodeTypeFactory factory;
 
-    private bool IsOpen
-    {
-        get
-        {
-            return !socket.CloseStatus.HasValue;
-        }
-    }
+    private bool IsOpen => !socket.CloseStatus.HasValue;
 
     public SocketConnectionHandler(IContainer container, WebSocket socket, INodeSerializer serializer, INodeTypeFactory factory)
     {
@@ -33,21 +27,37 @@ public class SocketConnectionHandler
 
     private void SendNode(INode node, int depth = 3)
     {
-
         if (IsOpen)
         {
-            var dataToSend = serializer.ToArraySegment(container.RootNode, CurrentToken, depth : 3, level : 0, fetchRelations : true);
-            socket.SendAsync(dataToSend, WebSocketMessageType.Text, endOfMessage : true, cancellationToken : CancellationToken.None);
+            var dataToSend = serializer.ToArraySegment(
+                node: container.RootNode,
+                token: CurrentToken,
+                depth: 3,
+                level: 0,
+                fetchRelations: true
+            );
+
+            socket.SendAsync(
+                buffer: dataToSend,
+                messageType: WebSocketMessageType.Text,
+                endOfMessage: true,
+                cancellationToken: CancellationToken.None
+            );
         }
     }
 
     private void SendInitialData()
     {
-        SendNode(container.RootNode, 20);
+        SendNode(container.RootNode, depth : 20);
     }
 
     private string CurrentToken { get; set; }
 
+    /// <summary>
+    /// Listen for commands from the client, which can be authorization
+    /// or node mutations.
+    /// </summary>
+    /// <returns></returns>
     public async Task ListenForCommands()
     {
         var buffer = new byte[1024 * 8];
@@ -74,6 +84,7 @@ public class SocketConnectionHandler
 
             result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
         }
+
         RemoveChangeAction();
         await socket.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, CancellationToken.None);
     }

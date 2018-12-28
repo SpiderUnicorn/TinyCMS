@@ -1,14 +1,14 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using TinyCMS.Data;
 using TinyCMS.Data.Builder;
 using TinyCMS.Data.Extensions;
 using TinyCMS.Data.Nodes;
 using TinyCMS.FileStorage;
-using Xunit;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using TinyCMS.Interfaces;
+using Xunit;
 
 namespace TinyCMS.Tests
 {
@@ -72,26 +72,6 @@ namespace TinyCMS.Tests
         }
 
         [Fact]
-        public void TestStorage()
-        {
-            // Arrange
-            var site = TestHelper.BuildBaseSite();
-            var container = new Container(site);
-            container.AddRelation(container.GetById("blog1"), container.GetById("blog2"));
-            container.AddRelation(container.GetById("blog3"), container.GetById("blog1"));
-            var store = new NodeFileStorage<Container>(
-                new BinaryStorageService(
-                    new FileStorage.Storage.FileStorageService("./")));
-
-            // Act
-            store.Store(container);
-            var newContainer = store.Load();
-
-            // Assert
-            Assert.Equal(container.Nodes.Count(), newContainer.Nodes.Count());
-        }
-
-        [Fact]
         public void TestWatchers()
         {
             // Arrange
@@ -103,13 +83,14 @@ namespace TinyCMS.Tests
             int noChildren = node.Children.Count;
             int eventChildren = 0;
 
-
-            node.PropertyChanged += (sender, e) => {
+            node.PropertyChanged += (sender, e) =>
+            {
                 changedPropery = e.PropertyName;
             };
 
-            node.Children.CollectionChanged += (sender, e) => {
-                eventChildren = ((ObservableCollection<INode>)sender).Count;
+            node.Children.CollectionChanged += (sender, e) =>
+            {
+                eventChildren = ((ObservableCollection<INode>) sender).Count;
             };
 
             // Act
