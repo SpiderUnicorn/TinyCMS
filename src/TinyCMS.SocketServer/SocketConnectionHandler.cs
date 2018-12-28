@@ -91,13 +91,12 @@ public class SocketConnectionHandler
         //foreach(var node in e.NewItems.OfType<INode>())
         //{
         //    parentNodeId = node.ParentId;
-        //    if (IsOpen)
-        //        SendNode(node);
+        //    SendNode(node);
         //}
         if (!string.IsNullOrEmpty(parentNodeId))
         {
             var parent = container.GetById(parentNodeId);
-            if (parent != null && IsOpen)
+            if (parent != null)
                 SendNode(parent);
         }
     }
@@ -110,7 +109,7 @@ public class SocketConnectionHandler
 
     void Container_OnValueChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-        if (IsOpen && sender is INode node)
+        if (sender is INode node)
         {
             SendNode(node);
         }
