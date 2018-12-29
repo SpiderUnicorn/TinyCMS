@@ -1210,8 +1210,8 @@ FN:9,TinyCMS.RequestTypeEnum TinyCMS.NodeRequest::get_RequestType()
 FNDA:8,TinyCMS.RequestTypeEnum TinyCMS.NodeRequest::get_RequestType()
 DA:10,8
 FN:11,System.String TinyCMS.NodeRequest::get_Data()
-FNDA:4,System.String TinyCMS.NodeRequest::get_Data()
-DA:12,4
+FNDA:5,System.String TinyCMS.NodeRequest::get_Data()
+DA:12,5
 FN:13,Newtonsoft.Json.Linq.JObject TinyCMS.NodeRequest::get_JsonData()
 FNDA:1,Newtonsoft.Json.Linq.JObject TinyCMS.NodeRequest::get_JsonData()
 DA:14,1
@@ -1222,20 +1222,20 @@ FN:25,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::AuthRequestWithToken(
 FNDA:2,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::AuthRequestWithToken(System.String)
 DA:26,2
 FN:28,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::JsonRequest(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject)
-FNDA:9,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::JsonRequest(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject)
-DA:29,9
+FNDA:10,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::JsonRequest(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject)
+DA:29,10
 FN:31,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::QueryRequest(TinyCMS.RequestTypeEnum,System.String,System.Collections.Generic.Dictionary`2<System.String,System.String>)
 FNDA:1,TinyCMS.Interfaces.INodeRequest TinyCMS.NodeRequest::QueryRequest(TinyCMS.RequestTypeEnum,System.String,System.Collections.Generic.Dictionary`2<System.String,System.String>)
 DA:32,1
 FN:17,System.Void TinyCMS.NodeRequest::.ctor(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary`2<System.String,System.String>)
-FNDA:12,System.Void TinyCMS.NodeRequest::.ctor(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary`2<System.String,System.String>)
-DA:18,12
-DA:19,12
-DA:20,12
-DA:21,12
-DA:22,12
-DA:23,12
-DA:24,12
+FNDA:13,System.Void TinyCMS.NodeRequest::.ctor(TinyCMS.RequestTypeEnum,System.String,Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary`2<System.String,System.String>)
+DA:18,13
+DA:19,13
+DA:20,13
+DA:21,13
+DA:22,13
+DA:23,13
+DA:24,13
 LF:14
 LH:14
 BRF:0
@@ -1328,93 +1328,87 @@ BRH:0
 FNF:2
 FNH:0
 end_of_record
-SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/SocketRequest.cs
-FN:15,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequest::Parse(System.Byte[],System.Int32)
-FNDA:0,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequest::Parse(System.Byte[],System.Int32)
-DA:16,0
-FN:35,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequest::Parse(System.String)
-FNDA:13,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequest::Parse(System.String)
-DA:36,13
-DA:37,13
-DA:38,1
-DA:40,12
-DA:41,2
-DA:42,2
-DA:43,2
-DA:46,10
-DA:47,10
-DA:48,9
-DA:49,9
-DA:50,9
-DA:52,10
-DA:54,10
-DA:55,10
-DA:56,10
-DA:57,10
-DA:58,1
+SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/SocketRequestParser.cs
+FN:16,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequestParser::Parse(System.Byte[],System.Int32)
+FNDA:1,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequestParser::Parse(System.Byte[],System.Int32)
+DA:17,1
+FN:19,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequestParser::Parse(System.String)
+FNDA:14,TinyCMS.Interfaces.INodeRequest TinyCMS.SocketRequestParser::Parse(System.String)
+DA:20,14
+DA:21,14
+DA:22,1
+DA:24,13
+DA:25,2
+DA:26,2
+DA:27,2
+DA:30,11
+DA:31,11
+DA:32,10
+DA:33,10
+DA:34,10
+DA:36,11
+DA:38,11
+DA:39,11
+DA:40,11
+DA:41,11
+DA:42,1
+DA:43,1
+DA:44,1
+DA:46,1
+DA:47,9
+DA:48,3
+DA:49,3
+DA:50,3
+DA:51,3
+DA:52,2
+DA:53,2
+DA:54,2
+DA:56,3
+DA:57,3
 DA:59,1
 DA:60,1
-DA:62,1
-DA:63,9
-DA:64,3
-DA:65,3
-DA:66,3
-DA:67,3
-DA:68,2
-DA:69,2
-DA:70,2
-DA:72,3
-DA:73,3
-DA:75,1
-DA:76,1
-DA:79,9
-DA:80,9
-DA:82,9
-DA:83,9
+DA:63,10
+DA:64,10
+DA:66,10
+DA:67,10
+DA:68,1
+DA:69,27
+DA:71,10
+DA:73,13
+BRDA:21,17,0,1
+BRDA:21,17,1,13
+BRDA:24,51,0,2
+BRDA:24,51,1,11
+BRDA:31,108,0,10
+BRDA:31,108,1,11
+BRDA:40,158,0,1
+BRDA:40,158,1,10
+BRDA:41,175,0,1
+BRDA:47,295,1,3
+BRDA:51,258,0,2
+BRDA:51,258,1,3
+BRDA:47,295,0,1
+BRDA:41,175,1,10
+FN:79,System.Boolean TinyCMS.SocketRequestParser::isAuthRequest(System.String)
+FNDA:13,System.Boolean TinyCMS.SocketRequestParser::isAuthRequest(System.String)
+DA:80,13
+FN:81,System.Void TinyCMS.SocketRequestParser::.cctor()
+FNDA:1,System.Void TinyCMS.SocketRequestParser::.cctor()
+DA:82,1
+DA:83,1
 DA:84,1
-DA:85,24
-DA:87,9
-DA:89,12
-BRDA:37,17,0,1
-BRDA:37,17,1,12
-BRDA:40,46,0,2
-BRDA:40,46,1,10
-BRDA:47,103,0,9
-BRDA:47,103,1,10
-BRDA:56,153,0,1
-BRDA:56,153,1,9
-BRDA:57,170,0,1
-BRDA:63,290,1,3
-BRDA:67,253,0,2
-BRDA:67,253,1,3
-BRDA:63,290,0,1
-BRDA:57,170,1,9
-FN:95,System.Boolean TinyCMS.SocketRequest::isAuthRequest(System.String)
-FNDA:12,System.Boolean TinyCMS.SocketRequest::isAuthRequest(System.String)
-DA:96,12
-FN:10,System.Void TinyCMS.SocketRequest::.ctor()
-FNDA:0,System.Void TinyCMS.SocketRequest::.ctor()
-DA:11,0
-FN:12,System.Void TinyCMS.SocketRequest::.ctor(System.String)
-FNDA:0,System.Void TinyCMS.SocketRequest::.ctor(System.String)
-DA:13,0
-FN:17,System.Void TinyCMS.SocketRequest::.cctor()
-FNDA:1,System.Void TinyCMS.SocketRequest::.cctor()
-DA:18,1
-DA:19,1
-DA:20,1
-DA:21,1
-DA:22,1
-DA:23,1
-DA:24,1
-DA:25,1
-DA:26,1
-LF:54
-LH:51
+DA:85,1
+DA:86,1
+DA:87,1
+DA:88,1
+DA:89,1
+DA:90,1
+LF:52
+LH:52
 BRF:14
 BRH:14
-FNF:6
-FNH:3
+FNF:4
+FNH:4
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/Extensions/ApplicationBuilderExtensions.cs
 FN:10,System.Void TinyCMS.SocketServer.ApplicationBuilderExtensions::UseSocketServer(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.IServiceProvider)
