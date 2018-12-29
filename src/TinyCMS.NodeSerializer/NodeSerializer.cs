@@ -69,7 +69,6 @@ namespace TinyCMS.Serializer
                 WriteKeyAndValue(output, token, "type", node.Type);
                 bool hasChildren = node.Children != null && node.Children.Any();
                 bool useParentId = true; //!string.IsNullOrEmpty(node.ParentId) && level < 1;
-                bool hasTags = node.Tags != null && node.Tags.Any();
                 var extraProps = node.GetPropertyDictionary(excludedProperties);
                 bool hasRelations = fetchRelations;
                 IEnumerable<INode> relations = null;
