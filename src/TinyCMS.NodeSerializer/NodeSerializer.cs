@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using TinyCMS.Data;
-using TinyCMS.Interfaces;
-using TinyCMS.Data.Extensions;
-using TinyCMS.Security;
 using TinyCMS.Base.Security;
+using TinyCMS.Data;
+using TinyCMS.Data.Extensions;
+using TinyCMS.Interfaces;
+using TinyCMS.Security;
 
 namespace TinyCMS.Serializer
 {
@@ -25,15 +25,24 @@ namespace TinyCMS.Serializer
             this.tokenValidator = tokenValidator;
         }
 
-        private const byte FnuttByte = (byte)'"';
-        private const byte ColonByte = (byte)':';
-        private const byte TrueByte = (byte)'1';
-        private const byte FalseByte = (byte)'0';
-        private const byte CommaByte = (byte)',';
-        private const byte ObjectStart = (byte)'{';
-        private const byte ObjectEnd = (byte)'}';
-        private const byte ArrayStart = (byte)'[';
-        private const byte ArrayEnd = (byte)']';
+        private const byte FnuttByte = (byte)
+        '"';
+        private const byte ColonByte = (byte)
+        ':';
+        private const byte TrueByte = (byte)
+        '1';
+        private const byte FalseByte = (byte)
+        '0';
+        private const byte CommaByte = (byte)
+        ',';
+        private const byte ObjectStart = (byte)
+        '{';
+        private const byte ObjectEnd = (byte)
+        '}';
+        private const byte ArrayStart = (byte)
+        '[';
+        private const byte ArrayEnd = (byte)
+        ']';
 
         public ArraySegment<byte> ToArraySegment(INode node, string token, int depth = 99, int level = 0, bool fetchRelations = true)
         {
@@ -61,7 +70,7 @@ namespace TinyCMS.Serializer
                 bool hasChildren = node.Children != null && node.Children.Any();
                 bool useParentId = true; //!string.IsNullOrEmpty(node.ParentId) && level < 1;
                 bool hasTags = node.Tags != null && node.Tags.Any();
-                var extraPrps = node.GetPropertyDictionary(excludedProperties);
+                var extraProps = node.GetPropertyDictionary(excludedProperties);
                 bool hasRelations = fetchRelations;
                 IEnumerable<INode> relations = null;
                 if (hasRelations)
@@ -69,7 +78,7 @@ namespace TinyCMS.Serializer
                     relations = _container.GetRelations(node);
                     hasRelations = relations.Any();
                 }
-                bool hasExtra = extraPrps.Keys.Any();
+                bool hasExtra = extraProps.Keys.Any();
 
                 if (useParentId && !string.IsNullOrEmpty(node.ParentId))
                 {
@@ -114,13 +123,14 @@ namespace TinyCMS.Serializer
                         StreamSerialize(child, token, output, depth, level + 1, false, excludedProperties);
                         isFirst = false;
                     }
+
                     output.WriteByte(ArrayEnd);
                 }
                 if (hasExtra)
                 {
                     output.WriteByte(CommaByte);
                     var isFirst = true;
-                    foreach (var p in extraPrps)
+                    foreach (var p in extraProps)
                     {
 
                         if (!isFirst)
@@ -133,6 +143,7 @@ namespace TinyCMS.Serializer
                     }
                 }
             }
+
             output.WriteByte(ObjectEnd);
         }
 
@@ -317,6 +328,5 @@ namespace TinyCMS.Serializer
             return Tuple.Create<string, string>(key, value);
         }
     }
-
 
 }

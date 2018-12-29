@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="FluentAssertions.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
@@ -21,7 +22,9 @@
   <ItemGroup>
     <ProjectReference Include="..\TinyCMS.FileStorage\TinyCMS.FileStorage.csproj" />
     <ProjectReference Include="..\TinyCMS.Data\TinyCMS.Data.csproj" />
+    <ProjectReference Include="..\TinyCMS.Base\TinyCMS.Base.csproj" />
     <ProjectReference Include="..\TinyCMS.SocketServer\TinyCMS.SocketServer.csproj" />
+    <ProjectReference Include="..\TinyCMS.NodeSerializer\TinyCMS.NodeSerializer.csproj" />
     <ProjectReference Include="..\TinyCMS.Interfaces\TinyCMS.Interfaces.csproj" />
   </ItemGroup>
 </Project>
