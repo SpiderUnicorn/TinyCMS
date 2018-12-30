@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TinyCMS.Data.Extensions;
 using TinyCMS.Interfaces;
 using static TinyCMS.Serializer.JsonTypeNotation;
 
@@ -43,20 +44,9 @@ namespace TinyCMS.Serializer
                 return;
             }
 
-            var nodePropertiesToSerialize = new Dictionary<string, string>
-                {
-                    ["id"] = node.Id,
-                    ["type"] = node.Type
-                };
+            WriteNodeProperties(node);
 
-            if (!string.IsNullOrEmpty(node.ParentId))
-            {
-                nodePropertiesToSerialize.Add("parentId", node.ParentId);
-            }
-
-            WriteStringDictionary(nodePropertiesToSerialize);
-
-            if (HasChildren(node))
+            if (node.HasChildren())
             {
                 Write(Comma);
                 WriteKey("children");
@@ -82,6 +72,31 @@ namespace TinyCMS.Serializer
             }
 
             Write(ObjectEnd);
+        }
+
+        private void WriteNodeProperties(INode node)
+        {
+            WriteKeyAndValue(nameof(node.Id).ToLowerFirst(), node.Id);
+            Write(Comma);
+            WriteKeyAndValue(nameof(node.Type).ToLowerFirst(), node.Type);
+
+            if (!string.IsNullOrEmpty(node.ParentId))
+            {
+                Write(Comma);
+                WriteKeyAndValue(nameof(node.ParentId).ToLowerFirst(), node.ParentId);
+            }
+        }
+
+        private void WriteKeyAndValue(string key, object value)
+        {
+            WriteKey(key);
+            WriteValue(value);
+        }
+
+        private void WriteKey(string key)
+        {
+            WriteString(key);
+            Write(Colon);
         }
 
         /// <summary>
@@ -138,12 +153,6 @@ namespace TinyCMS.Serializer
             .Replace("\"", "\\\"");
         }
 
-        private void WriteKeyAndValue(string key, object value)
-        {
-            WriteKey(key);
-            WriteValue(value);
-        }
-
         private void WriteString(string value)
         {
             Write(Quote);
@@ -157,17 +166,7 @@ namespace TinyCMS.Serializer
         private void WriteNumber(int value) => Write(value.ToString());
         private void WriteNumber(float value) => Write(value.ToString());
         private void WriteNumber(double value) => Write(value.ToString());
-        private void WriteKeyValueStrings(string key, string value)
-        {
-            WriteKey(key);
-            WriteString(value);
-        }
 
-        private void WriteKey(string key)
-        {
-            WriteString(key);
-            Write(Colon);
-        }
         private void WriteArray<T>(IEnumerable<T> values, Action<T> fn)
         {
             Write(ArrayStart);
@@ -199,18 +198,11 @@ namespace TinyCMS.Serializer
             IterateCommaSeparated(values.GetEnumerator(), entry => fn(entry.Key, entry.Value));
         }
 
-        private void WriteStringDictionary(Dictionary<string, string> dictionary)
-        {
-            WriteCommaSeparated(dictionary, WriteKeyValueStrings);
-        }
-
         private void WriteObject(Dictionary<string, object> propertyDictionary)
         {
             Write(ObjectStart);
             WriteCommaSeparated(propertyDictionary, WriteKeyAndValue);
             Write(ObjectEnd);
         }
-
-        private bool HasChildren(INode node) => node.Children?.Any() ?? false;
     }
 }

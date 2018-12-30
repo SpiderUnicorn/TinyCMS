@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TinyCMS.Data.Nodes;
 using TinyCMS.Interfaces;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json;
 
 namespace TinyCMS.Data.Extensions
 {
@@ -96,7 +96,7 @@ namespace TinyCMS.Data.Extensions
 
         public static INode Apply(this INode that, JObject jObject)
         {
-            using (var sr = jObject.CreateReader())
+            using(var sr = jObject.CreateReader())
             {
                 JsonSerializer.CreateDefault().Populate(sr, that); // Uses the system default JsonSerializerSettings
             }
@@ -143,7 +143,7 @@ namespace TinyCMS.Data.Extensions
             that.Add(new Page()
             {
                 Id = id,
-                Name = "Blogpost"
+                    Name = "Blogpost"
             }.Add(new Image()
             {
                 Path = "/image.jpg"
@@ -156,5 +156,8 @@ namespace TinyCMS.Data.Extensions
             }));
             return that;
         }
+
+        public static bool HasChildren(this INode that) =>
+            that.Children?.Any() ?? false;
     }
 }
