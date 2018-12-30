@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Net.WebSockets;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using TinyCMS;
+using TinyCMS.Base.Security;
 using TinyCMS.Interfaces;
+using TinyCMS.Security;
 using TinyCMS.SocketServer;
 
 public class SocketConnectionHandler
@@ -12,15 +15,17 @@ public class SocketConnectionHandler
     private readonly WebSocket socket;
     private readonly INodeSerializer serializer;
     private readonly INodeTypeFactory factory;
+    private readonly ITokenDecoder tokenValidator;
 
     private bool IsOpen => !socket.CloseStatus.HasValue;
 
-    public SocketConnectionHandler(IContainer container, WebSocket socket, INodeSerializer serializer, INodeTypeFactory factory)
+    public SocketConnectionHandler(IContainer container, WebSocket socket, INodeSerializer serializer, INodeTypeFactory factory, ITokenDecoder tokenValidator)
     {
         this.container = container;
         this.socket = socket;
         this.serializer = serializer;
         this.factory = factory;
+        this.tokenValidator = tokenValidator;
         ConnectChangeHandlers();
         SendInitialData();
     }
@@ -29,20 +34,43 @@ public class SocketConnectionHandler
     {
         if (IsOpen)
         {
+            // validera
+            if (IsValidToken(node, CurrentToken))
+            {
+                // ...
+            }
+
+            // seralizera
             var dataToSend = serializer.ToArraySegment(
                 node: container.RootNode,
-                token: CurrentToken,
                 depth: 3,
                 level: 0,
                 fetchRelations: true
             );
 
+            // skicka
             socket.SendAsync(
                 buffer: dataToSend,
                 messageType: WebSocketMessageType.Text,
                 endOfMessage: true,
                 cancellationToken: CancellationToken.None
             );
+        }
+    }
+
+    private bool IsValidToken(object node, string token)
+    {
+        var res = tokenValidator.ValidateAndDecode(token);
+        if (node is ISecureNode secureNode)
+            return string.IsNullOrEmpty(secureNode.RequiredRole) || res != null;
+        else
+        {
+            var roleAttribute = node.GetType().GetCustomAttribute<RequireRoleAttribute>();
+            if (roleAttribute is RequireRoleAttribute requireRole)
+            {
+                return res != null;
+            }
+            return true;
         }
     }
 

@@ -54,6 +54,15 @@ namespace TinyCMS.Tests
                 public Dictionary<string, object> DictionaryProp { get; set; }
                 public IEnumerable<string> EnumerableProp { get; set; }
                 public IEnumerable<INode> EnumerableNodeProp { get; set; }
+                // Two unhandled properties to test parsing unknowns
+                public char CharProp { get; set; }
+                public StubComplexType ComplexProp { get; set; }
+            }
+
+            private class StubComplexType
+            {
+                public int A { get; set; }
+                public string B { get; set; }
             }
 
             [Fact]
@@ -67,6 +76,20 @@ namespace TinyCMS.Tests
 
                 // Assert
                 result.Should().Contain("stringProp");
+            }
+
+            [Fact]
+            public void parses_null_value_by_removing_the_key()
+            {
+                // Arrange
+                var node = new TestDataTypesNode { Id = "foo" };
+                node.StringProp = null;
+
+                // Act
+                var result = Serialize(node);
+
+                // Assert
+                result.Should().NotContain("stringProp");
             }
 
             [Fact]
@@ -166,7 +189,7 @@ namespace TinyCMS.Tests
             }
 
             [Fact]
-            public void parses_enumerable()
+            public void parses_enums()
             {
                 // Arrange
                 var enumerable = new [] { "foo", "bar" };
@@ -179,7 +202,38 @@ namespace TinyCMS.Tests
                 result.Should().Contain("enumerableProp");
             }
 
-            [Fact(Skip = "Why does this not work?")]
+            [Fact]
+            public void parses_complex_type()
+            {
+                // Arrange
+                var complexType = new StubComplexType { A = 42, B = "foo" };
+                var node = new TestDataTypesNode { Id = "stubId", ComplexProp = complexType };
+
+                // Act
+                var result = Serialize(node);
+
+                // Assert
+                result.Should().Contain("complexProp");
+                result.Should().Contain("42");
+                result.Should().Contain("foo");
+            }
+
+            [Fact]
+            public void parses_complex_type_ignoring_null_value()
+            {
+                // Arrange
+                var complexType = new StubComplexType { A = 42, B = null };
+                var node = new TestDataTypesNode { Id = "stubId", ComplexProp = complexType };
+
+                // Act
+                var result = Serialize(node);
+
+                // Assert
+                var json = JsonConvert.DeserializeObject<StubComplexType>(result);
+                json.B.Should().BeNull();
+            }
+
+            [Fact]
             public void parses_enumerable_of_nodes()
             {
                 // Arrange
@@ -198,32 +252,13 @@ namespace TinyCMS.Tests
         public void given_no_node_it_creates_empty_object()
         {
             // Arrange
-            var serializer = new NodeSerializer(null, null);
-            var output = new MemoryStream();
+            INode noNode = null;
 
             // Act
-            serializer.StreamSerialize(null, null, output);
-            var res = Encoding.ASCII.GetString(output.ToArray());
+            var result = Serialize(noNode);
 
             // Assert
-            res.Should().Be("{}");
-        }
-
-        [Fact(Skip = "How should this work?")]
-        public void given_no_token_it_creates_empty_object()
-        {
-            // Arrange
-            var jwtSettings = new JWTSettings("any key");
-            var tokenDecoder = new TokenDecoder(jwtSettings);
-            var serializer = new NodeSerializer(null, tokenDecoder);
-            var output = new MemoryStream();
-
-            // Act
-            serializer.StreamSerialize(new TestNode("foo"), null, output);
-            var res = Encoding.ASCII.GetString(output.ToArray());
-
-            // Assert
-            res.Should().Be("{}");
+            result.Should().Be("{}");
         }
 
         [Fact]
@@ -345,18 +380,16 @@ namespace TinyCMS.Tests
 
         private static string Serialize(INode node, IContainer container = null, bool fetchRelations = false)
         {
+            if (container == null)
+            {
+                container = new Container();
+            }
             var serializer = NodeSerializerTests.GetSerializer(container);
-            var output = new MemoryStream();
-            serializer.StreamSerialize(node, null, output, 99, 0, fetchRelations : fetchRelations);
-            return Encoding.ASCII.GetString(output.ToArray());
+            var arraySegment = serializer.ToArraySegment(node, 99, 0, fetchRelations);
+            return Encoding.ASCII.GetString(arraySegment);
         }
 
-        private static NodeSerializer GetSerializer(IContainer container = null)
-        {
-            var jwtSettings = new JWTSettings("any key");
-            var tokenDecoder = new TokenDecoder(jwtSettings);
-            return new NodeSerializer(container, tokenDecoder);
-        }
+        private static NodeSerializer GetSerializer(IContainer container = null) => new NodeSerializer(container);
 
         private class Deserialized
         {
