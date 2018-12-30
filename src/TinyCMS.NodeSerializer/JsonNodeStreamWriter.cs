@@ -7,6 +7,9 @@ using static TinyCMS.Serializer.JsonTypeNotation;
 
 namespace TinyCMS.Serializer
 {
+    /// <summary>
+    /// Specialized StreamWriter for writing INode to a stream
+    /// </summary>
     public class JsonNodeStreamWriter : StreamWriter
     {
         public IContainer Container { get; }
@@ -15,134 +18,17 @@ namespace TinyCMS.Serializer
         {
             Container = container;
         }
-        public void WriteValue(object value)
-        {
-            if (value is INode node)
-            {
-                WriteNode(node, 2);
-            }
-            else if (value is string valueString)
-            {
-                WriteString(EscapeString(valueString));
-            }
-            else if (value is bool b)
-            {
-                WriteBool(b);
-            }
-            else if (value is DateTime dateTime)
-            {
-                WriteDateTime(dateTime);
-            }
-            else if (value is Enum @enum)
-            {
-                WriteEnum(@enum);
-            }
-            else if (value is int intNumber)
-            {
-                WriteNumber(intNumber);
-            }
-            else if (value is float floatNumber)
-            {
-                WriteNumber(floatNumber);
-            }
-            else if (value is double doubleNumber)
-            {
-                WriteNumber(doubleNumber);
-            }
-            else if (value is Dictionary<string, object> dictionary)
-            {
-                Write(ObjectStart);
-                WriteCommaSeparated(dictionary, WriteKeyAndValue);
-                Write(ObjectEnd);
-            }
-            else if (value is IEnumerable<object> array)
-            {
-                WriteArray<object>(array, WriteValue);
-            }
-            else
-            {
-                Write(ObjectStart);
-                WriteCommaSeparated(value.GetPropertyDictionary(), WriteKeyAndValue);
-                Write(ObjectEnd);
-            }
-        }
 
-        private string EscapeString(string value)
-        {
-            return value
-                .Replace("\n", "\\n")
-                .Replace("\r", "\\r")
-                .Replace("\t", "\\t")
-                .Replace("\"", "\\\"");
-        }
-
-        public void WriteKeyAndValue(string key, object value)
-        {
-            WriteKey(key);
-            WriteValue(value);
-        }
-
-        public void WriteString(string value)
-        {
-            Write(Quote);
-            Write(value);
-            Write(Quote);
-        }
-
-        public void WriteBool(bool value) => Write(value ? True : False);
-        public void WriteDateTime(DateTime dateTime) => Write(dateTime.Ticks.ToString());
-        public void WriteEnum(Enum @enum) => WriteString(@enum.ToString());
-        public void WriteNumber(int value) => Write(value.ToString());
-        public void WriteNumber(float value) => Write(value.ToString());
-        public void WriteNumber(double value) => Write(value.ToString());
-        public void WriteKeyValueStrings(string key, string value)
-        {
-            WriteKey(key);
-            WriteString(value);
-        }
-
-        public void WriteKey(string key)
-        {
-            WriteString(key);
-            Write(Colon);
-        }
-        public void WriteArray<T>(IEnumerable<T> values, Action<T> fn)
-        {
-            Write(ArrayStart);
-            WriteCommaSeparated(values, fn);
-            Write(ArrayEnd);
-        }
-
-        public void WriteCommaSeparated<T>(IEnumerable<T> values, Action<T> fn)
-        {
-            IterateCommaSeparated(values.GetEnumerator(), fn);
-        }
-
-        private void IterateCommaSeparated<T>(IEnumerator<T> enumerator, Action<T> fn)
-        {
-            var isFirst = true;
-            while (enumerator.MoveNext())
-            {
-            if (!isFirst)
-            {
-            Write(Comma);
-                }
-                fn(enumerator.Current);
-                isFirst = false;
-            }
-        }
-
-        public void WriteCommaSeparated<TKey, TValue>(Dictionary<TKey, TValue> values, Action<TKey, TValue> fn)
-        {
-            IterateCommaSeparated(values.GetEnumerator(), entry => fn(entry.Key, entry.Value));
-        }
-
-        public void WriteStringDictionary(Dictionary<string, string> dictionary)
-        {
-            WriteCommaSeparated(dictionary, WriteKeyValueStrings);
-        }
-
-        public void WriteNode(INode node, bool fetchRelations = true, params string[] excludedProperties)
+        /// <summary>
+        /// Writes a node structure to the stream.
+        /// Optionally includes relations.
+        ///
+        /// Maximum depth for relations is 2 nodes down.
+        /// </summary>
+        /// <param name="node">Node to serialize</param>
+        /// <param name="shouldIncludeRelations">Toggle if relations should be serialized</param>
+        /// <param name="excludedProperties">Properties to not serialize</param>
+        public void WriteNode(INode node, bool shouldIncludeRelations = true, params string[] excludedProperties)
         {
             // delegate to recursive function to keep the public WriteNode free from the level property
             WriteNode(node, 0, true, excludedProperties);
@@ -196,6 +82,130 @@ namespace TinyCMS.Serializer
             }
 
             Write(ObjectEnd);
+        }
+
+        /// <summary>
+        /// Does appropriate type checks on the value and calls
+        /// a matching write function.
+        /// </summary>
+        /// <param name="value">The value to serialize</param>
+        private void WriteValue(object value)
+        {
+            switch (value)
+            {
+                case INode node:
+                    WriteNode(node, 2);
+                    break;
+                case string valueString:
+                    WriteString(EscapeString(valueString));
+                    break;
+                case bool b:
+                    WriteBool(b);
+                    break;
+                case DateTime dateTime:
+                    WriteDateTime(dateTime);
+                    break;
+                case Enum @enum:
+                    WriteEnum(@enum);
+                    break;
+                case int intNumber:
+                    WriteNumber(intNumber);
+                    break;
+                case float floatNumber:
+                    WriteNumber(floatNumber);
+                    break;
+                case double doubleNumber:
+                    WriteNumber(doubleNumber);
+                    break;
+                case Dictionary<string, object> dictionary:
+                    Write(ObjectStart);
+                    WriteCommaSeparated(dictionary, WriteKeyAndValue);
+                    Write(ObjectEnd);
+                    break;
+                case IEnumerable<object> array:
+                    WriteArray<object>(array, WriteValue);
+                    break;
+                default:
+                    Write(ObjectStart);
+                    WriteCommaSeparated(value.GetPropertyDictionary(), WriteKeyAndValue);
+                    Write(ObjectEnd);
+                    break;
+            }
+        }
+
+        private string EscapeString(string value)
+        {
+            return value
+            .Replace("\n", "\\n")
+            .Replace("\r", "\\r")
+            .Replace("\t", "\\t")
+            .Replace("\"", "\\\"");
+        }
+
+        private void WriteKeyAndValue(string key, object value)
+        {
+            WriteKey(key);
+            WriteValue(value);
+        }
+
+        private void WriteString(string value)
+        {
+            Write(Quote);
+            Write(value);
+            Write(Quote);
+        }
+
+        private void WriteBool(bool value) => Write(value ? True : False);
+        private void WriteDateTime(DateTime dateTime) => Write(dateTime.Ticks.ToString());
+        private void WriteEnum(Enum @enum) => WriteString(@enum.ToString());
+        private void WriteNumber(int value) => Write(value.ToString());
+        private void WriteNumber(float value) => Write(value.ToString());
+        private void WriteNumber(double value) => Write(value.ToString());
+        private void WriteKeyValueStrings(string key, string value)
+        {
+            WriteKey(key);
+            WriteString(value);
+        }
+
+        private void WriteKey(string key)
+        {
+            WriteString(key);
+            Write(Colon);
+        }
+        private void WriteArray<T>(IEnumerable<T> values, Action<T> fn)
+        {
+            Write(ArrayStart);
+            WriteCommaSeparated(values, fn);
+            Write(ArrayEnd);
+        }
+
+        private void WriteCommaSeparated<T>(IEnumerable<T> values, Action<T> fn)
+        {
+            IterateCommaSeparated(values.GetEnumerator(), fn);
+        }
+
+        private void IterateCommaSeparated<T>(IEnumerator<T> enumerator, Action<T> fn)
+        {
+            var isFirst = true;
+            while (enumerator.MoveNext())
+            {
+            if (!isFirst)
+            {
+            Write(Comma);
+                }
+                fn(enumerator.Current);
+                isFirst = false;
+            }
+        }
+
+        private void WriteCommaSeparated<TKey, TValue>(Dictionary<TKey, TValue> values, Action<TKey, TValue> fn)
+        {
+            IterateCommaSeparated(values.GetEnumerator(), entry => fn(entry.Key, entry.Value));
+        }
+
+        private void WriteStringDictionary(Dictionary<string, string> dictionary)
+        {
+            WriteCommaSeparated(dictionary, WriteKeyValueStrings);
         }
 
         private bool HasChildren(INode node) => node.Children?.Any() ?? false;
