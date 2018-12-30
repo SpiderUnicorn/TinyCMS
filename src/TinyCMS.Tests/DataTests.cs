@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using FluentAssertions;
 using TinyCMS.Data;
 using TinyCMS.Data.Builder;
 using TinyCMS.Data.Extensions;
@@ -12,97 +13,118 @@ using Xunit;
 
 namespace TinyCMS.Tests
 {
-    public static class TestHelper
-    {
-        public static INode BuildBaseSite()
-        {
-            return new Site() { Id = "root" }
-                .Add(new Page() { Name = "Blog", Id = "blog" }
-                    .AddBlogPage("blog1")
-                    .AddBlogPage("blog2"))
-                .Add(new Page() { Name = "About", Id = "about" }
-                    .AddBlogPage("blog3")
-                    .Add(new Text() { Value = "About page text" }));
-        }
-    }
-
-    public class UnitTest1
+    public class DataTests
     {
         [Fact]
-        public void BuildSite()
+        public void a_single_node_has_no_children()
         {
             // Arrange
-            var site = TestHelper.BuildBaseSite();
+            var site = new Site() { Id = "root" };
 
             // Act
-            site.AddBlogPage();
+            // no op
 
             // Assert
-            Assert.Equal(site.Children.Count, 3);
+            site.Children.Should().BeEmpty();
         }
 
         [Fact]
-        public void CreateBuilder()
+        public void can_add_a_child_to_a_node()
         {
             // Arrange
-            var site = TestHelper.BuildBaseSite();
+            var site = new Site() { Id = "root" };
+
+            // Act
+            site.Add(new Page());
+
+            // Assert
+            site.Children.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void can_get_child_from_container()
+        {
+            // Arrange
+            var site = new Site() { Id = "root" }
+                .Add(new Page() { Name = "About", Id = "about" });
+
             var container = new Container(site);
 
             // Act
             var aboutPage = container.GetById("about") as Page;
 
             // Assert
-            Assert.Equal(aboutPage.Name, "About");
+            aboutPage.Name.Should().Be("About");
         }
 
         [Fact]
-        public void TestRelations()
+        public void get_non_existing_by_id_from_container_returns_null()
         {
             // Arrange
-            var site = TestHelper.BuildBaseSite();
+            var site = new Site() { Id = "root" };
             var container = new Container(site);
-            container.AddRelation(container.GetById("blog1"), container.GetById("blog2"));
-            container.AddRelation(container.GetById("blog3"), container.GetById("blog1"));
 
             // Act
-            var relations = container.GetRelationsById("blog1").ToList();
+            var aboutPage = container.GetById("about") as Page;
 
             // Assert
-            Assert.True(relations.Any());
+            aboutPage.Should().BeNull();
         }
 
         [Fact]
-        public void TestWatchers()
+        public void can_get_relation_between_parent_and_child()
         {
             // Arrange
-            var site = TestHelper.BuildBaseSite();
+            var site = new Site() { Id = "root" }
+                .Add(new Page() { Name = "Blog", Id = "blog" });
+
             var container = new Container(site);
+            container.AddRelation(container.GetById("root"), container.GetById("blog"));
 
-            var node = container.RootNode as BaseNode;
-            var changedPropery = string.Empty;
-            int noChildren = node.Children.Count;
-            int eventChildren = 0;
+            // Act
+            var relations = container.GetRelationsById("blog").ToList();
 
-            node.PropertyChanged += (sender, e) =>
+            // Assert
+            relations.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void can_watch_for_property_changes()
+        {
+            // Arrange
+            var site = new Site { Id = "root" };
+            var container = new Container(site);
+            var changedProperty = string.Empty;
+            site.PropertyChanged += (sender, e) =>
             {
-                changedPropery = e.PropertyName;
+                changedProperty = e.PropertyName;
             };
 
-            node.Children.CollectionChanged += (sender, e) =>
+            // Act
+            site.Id = "new id";
+
+            // Assert
+            changedProperty.Should().Be("Id");
+        }
+
+        [Fact]
+        public void can_watch_for_collection_changes()
+        {
+            // Arrange
+            var site = new Site { Id = "root" };
+            var container = new Container(site);
+            int eventChildren = 0;
+
+            site.Children.CollectionChanged += (sender, e) =>
             {
                 eventChildren = ((ObservableCollection<INode>) sender).Count;
             };
 
             // Act
-            node.Tags = new List<string>() { "addedtag" };
-            node.Add(new Text()
-            {
-                Value = "sklepar"
-            });
+            site.Add(new Text());
 
             // Assert
-            Assert.Equal("Tags", changedPropery);
-            Assert.Equal(noChildren + 1, eventChildren);
+            eventChildren.Should().Be(1);
         }
 
         [Fact]

@@ -13,17 +13,21 @@ namespace TinyCMS.Data
     public abstract class BaseNode : INode, INotifyPropertyChanged
     {
         public string Id { get; set; }
+
         [JsonIgnore]
         public string ParentId { get; set; }
+
         [JsonIgnore]
         public bool IsParsed { get; set; }
         public abstract string Type { get; }
-        [SchemaType("tags",false)]
+
+        [SchemaType("tags", false)]
         public IList<string> Tags { get; set; }
+
         [SchemaType("children")]
         public ObservableCollection<INode> Children { get; set; } = new ObservableCollection<INode>();
 
-        [field: NonSerialized]
+        [field : NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
