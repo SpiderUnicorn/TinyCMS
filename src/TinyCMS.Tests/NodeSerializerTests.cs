@@ -385,7 +385,7 @@ namespace TinyCMS.Tests
                 container = new Container();
             }
             var serializer = NodeSerializerTests.GetSerializer(container);
-            var arraySegment = serializer.ToArraySegment(node, 99, 0, fetchRelations);
+            var arraySegment = serializer.ToArraySegment(node, fetchRelations : fetchRelations);
             return Encoding.ASCII.GetString(arraySegment);
         }
 

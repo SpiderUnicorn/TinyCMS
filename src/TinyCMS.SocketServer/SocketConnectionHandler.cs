@@ -43,8 +43,6 @@ public class SocketConnectionHandler
             // seralizera
             var dataToSend = serializer.ToArraySegment(
                 node: container.RootNode,
-                depth: 3,
-                level: 0,
                 fetchRelations: true
             );
 

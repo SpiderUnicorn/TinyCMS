@@ -138,7 +138,13 @@ namespace TinyCMS.Serializer
             WriteCommaSeparated(dictionary, WriteKeyValueStrings);
         }
 
-        public void WriteNode(INode node, int depth = 99, int level = 0, bool fetchRelations = true, params string[] excludedProperties)
+        public void WriteNode(INode node, bool fetchRelations = true, params string[] excludedProperties)
+        {
+            // delegate to recursive function to keep the public WriteNode free from the level property
+            WriteNode(node, 0, true, excludedProperties);
+        }
+
+        private void WriteNode(INode node, int level = 0, bool fetchRelations = true, params string[] excludedProperties)
         {
             Write(ObjectStart);
             if (node is null)
@@ -172,13 +178,13 @@ namespace TinyCMS.Serializer
             {
                 Write(Comma);
                 WriteKey("children");
-                WriteArray(node.Children, child => WriteNode(child, depth, level + 1, level < 2, excludedProperties));
+                WriteArray(node.Children, child => WriteNode(child, level + 1, level < 2, excludedProperties));
             }
             if (hasRelations)
             {
                 Write(Comma);
                 WriteKey("relations");
-                WriteArray(relations, child => WriteNode(child, depth, level + 1, false, excludedProperties));
+                WriteArray(relations, child => WriteNode(child, level + 1, false, excludedProperties));
             }
 
             var extraProps = node.GetPropertyDictionary(excludedProperties);

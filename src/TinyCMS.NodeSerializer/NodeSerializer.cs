@@ -20,14 +20,14 @@ namespace TinyCMS.Serializer
             stream = new MemoryStream();
             output = new JsonNodeStreamWriter(stream, container);
         }
-        public ArraySegment<byte> ToArraySegment(INode node, int depth = 99, int level = 0, bool fetchRelations = true)
+        public ArraySegment<byte> ToArraySegment(INode node, bool fetchRelations = true)
         {
 
-            output.WriteNode(node, depth, level, fetchRelations);
-            var ret = new ArraySegment<byte>();
+            output.WriteNode(node, fetchRelations);
+            var arraySegment = new ArraySegment<byte>();
             output.Flush();
-            stream.TryGetBuffer(out ret);
-            return ret;
+            stream.TryGetBuffer(out arraySegment);
+            return arraySegment;
         }
 
         /*
