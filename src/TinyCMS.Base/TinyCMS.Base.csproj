@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
     <PackageVersion>0.1</PackageVersion>
     <Authors>Mats Törnberg</Authors>
@@ -25,7 +25,7 @@
     <Compile Remove="Security\FirebaseAuthentication.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All"/>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.3.0" />
      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />

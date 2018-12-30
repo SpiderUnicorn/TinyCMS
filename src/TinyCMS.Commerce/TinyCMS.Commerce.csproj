@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageVersion>0.1</PackageVersion>
     <Authors>Mats Törnberg</Authors>
     <Owners>Mats Törnberg</Owners>

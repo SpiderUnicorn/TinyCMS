@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
     <Owners>Mats Törnberg</Owners>
     <PackageProjectUrl>https://github.com/matst80/TinyCMS</PackageProjectUrl>
