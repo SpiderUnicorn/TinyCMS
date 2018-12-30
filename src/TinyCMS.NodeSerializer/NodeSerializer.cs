@@ -25,13 +25,16 @@ namespace TinyCMS.Serializer
             {
                 container = new Container(node);
             }
-            var stream = new MemoryStream();
-            var output = new NodeStreamWriter(stream, container);
-            output.WriteNode(node, fetchRelations);
-            var arraySegment = new ArraySegment<byte>();
-            output.Flush();
-            stream.TryGetBuffer(out arraySegment);
-            return arraySegment;
+
+            using(var stream = new MemoryStream())
+            {
+                var output = new NodeStreamWriter(stream, container);
+                output.WriteNode(node, fetchRelations);
+                var arraySegment = new ArraySegment<byte>();
+                output.Flush();
+                stream.TryGetBuffer(out arraySegment);
+                return arraySegment;
+            }
         }
     }
 }
