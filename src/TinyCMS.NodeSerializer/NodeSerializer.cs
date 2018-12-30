@@ -13,16 +13,20 @@ namespace TinyCMS.Serializer
 
     public class NodeSerializer : INodeSerializer
     {
-        private MemoryStream stream;
-        private NodeStreamWriter output;
+        private IContainer container;
+
         public NodeSerializer(IContainer container)
         {
-            stream = new MemoryStream();
-            output = new NodeStreamWriter(stream, container);
+            this.container = container;
         }
         public ArraySegment<byte> ToArraySegment(INode node, bool fetchRelations = true)
         {
-
+            if (container == null)
+            {
+                container = new Container(node);
+            }
+            var stream = new MemoryStream();
+            var output = new NodeStreamWriter(stream, container);
             output.WriteNode(node, fetchRelations);
             var arraySegment = new ArraySegment<byte>();
             output.Flush();
