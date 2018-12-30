@@ -47,6 +47,7 @@ namespace TinyCMS.Base
         public Type NodeTypeFactory { get; set; } = typeof(NodeTypeFactory);
         public Type NodeStorage { get; set; } = typeof(NodeFileStorage<Container>);
         public Type NodeSerializer { get; set; } = typeof(NodeSerializer);
+        public Type SchemaSerializer { get; set; } = typeof(SchemaSerializer);
         public Type StorageService { get; set; } = typeof(JsonStorageService);
         public Type TokenValidator { get; set; } = typeof(GoogleTokenValidator);
 

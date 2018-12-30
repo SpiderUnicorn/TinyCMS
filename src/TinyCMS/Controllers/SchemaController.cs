@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TinyCMS.Data.Builder;
 using TinyCMS.Interfaces;
-using System.Linq;
+using TinyCMS.Serializer;
 
 namespace TinyCMS.Controllers
 {
@@ -12,7 +13,7 @@ namespace TinyCMS.Controllers
     {
 
         readonly INodeTypeFactory _factory;
-        readonly INodeSerializer _serializer;
+        readonly SchemaSerializer _serializer;
 
         private void SendOkJson()
         {
@@ -20,15 +21,15 @@ namespace TinyCMS.Controllers
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
 
-        public SchemaController(INodeTypeFactory factory, INodeSerializer ser)
+        public SchemaController(INodeTypeFactory factory, SchemaSerializer serializer)
         {
             this._factory = factory;
-            this._serializer = ser;
+            this._serializer = serializer;
         }
 
         private string GetToken()
         {
-            if (Request.Headers.TryGetValue("Authorization",out var authHeader))
+            if (Request.Headers.TryGetValue("Authorization", out var authHeader))
             {
                 return authHeader;
             }
@@ -39,14 +40,16 @@ namespace TinyCMS.Controllers
         public void GetSchema(string type)
         {
             SendOkJson();
-            _serializer.StreamSchema(_factory.GetTypeByName(type), GetToken(), Response.Body);
+            _serializer.StreamSchema(_factory.GetTypeByName(type), Response.Body);
         }
 
+        /*
         [HttpGet]
         public void GetAll()
         {
             SendOkJson();
-            _serializer.WriteValue(Response.Body, GetToken(), _factory.RegisterdTypeNames());
+            _serializer.WriteValue(Response.Body, _factory.RegisterdTypeNames());
         }
+        */
     }
 }

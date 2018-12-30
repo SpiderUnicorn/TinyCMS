@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using FluentAssertions;
+using Newtonsoft.Json.Linq;
 using TinyCMS.Data;
 using TinyCMS.Data.Builder;
 using TinyCMS.Data.Extensions;
 using TinyCMS.Data.Nodes;
 using TinyCMS.FileStorage;
 using TinyCMS.Interfaces;
+using TinyCMS.SocketServer;
 using Xunit;
 
 namespace TinyCMS.Tests
@@ -36,6 +38,33 @@ namespace TinyCMS.Tests
 
             // Act
             site.Add(new Page());
+
+            // Assert
+            site.Children.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void can_add_a_child_to_a_node_even_when_children_is_null()
+        {
+            // Arrange
+            var site = new Site() { Id = "root" };
+            site.Children = null;
+
+            // Act
+            site.Add(new Page());
+
+            // Assert
+            site.Children.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void can_add_a_child_to_a_node_by_type()
+        {
+            // Arrange
+            var site = new Site() { Id = "root" };
+
+            // Act
+            site.Add<Page>();
 
             // Assert
             site.Children.Count.Should().Be(1);
@@ -140,5 +169,47 @@ namespace TinyCMS.Tests
             Assert.Equal(newnode.GetType(), typeof(Text));
         }
 
+        public class moving_nodes
+        {
+            [Fact]
+            public void can_move_a_node_to_a_new_parent_node()
+            {
+                // Arrange
+                var site = new Site() { Id = "root" }
+                    .Add(new Page() { Name = "Blog", Id = "blog" })
+                    .Add(new Page() { Name = "About", Id = "about" });
+
+                var moveData = new MoveData
+                {
+                    OldParentId = "root",
+                    ParentId = "blog",
+                    Id = "about"
+                };
+
+                var moveRequest = new MoveRequest();
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(moveData);
+                moveRequest.JsonData = JObject.Parse(json);
+
+                var container = new Container(site);
+
+                // Act
+                moveRequest.Move(container);
+
+                // Assert
+                var about = container.GetById("about");
+                about.ParentId.Should().Be("blog");
+                site.Children.Count.Should().Be(1);
+            }
+
+            private class MoveRequest : INodeRequest
+            {
+                public RequestTypeEnum RequestType => RequestTypeEnum.Move;
+
+                public string Data { get; set; }
+
+                public JObject JsonData { get; set; }
+                public Dictionary<string, string> QueryString { get; set; }
+            }
+        }
     }
 }

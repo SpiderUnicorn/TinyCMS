@@ -14,11 +14,11 @@ namespace TinyCMS.Serializer
     public class NodeSerializer : INodeSerializer
     {
         private MemoryStream stream;
-        private JsonNodeStreamWriter output;
+        private NodeStreamWriter output;
         public NodeSerializer(IContainer container)
         {
             stream = new MemoryStream();
-            output = new JsonNodeStreamWriter(stream, container);
+            output = new NodeStreamWriter(stream, container);
         }
         public ArraySegment<byte> ToArraySegment(INode node, bool fetchRelations = true)
         {
