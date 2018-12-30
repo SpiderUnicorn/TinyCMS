@@ -39,12 +39,13 @@ namespace TinyCMS.Node.ResizeImage
 
         public void GetResizedImageUrl(string downloadUrl, Action<IResizeResponse> onTokenFetched)
         {
-            Task.Run(async () =>
+            Task.Run(async() =>
             {
                 try
                 {
                     var client = new HttpClient();
-                    var requestObj = new DefaultResizeRequest() { 
+                    var requestObj = new DefaultResizeRequest()
+                    {
                         Url = downloadUrl
                     };
                     var response = await client.PostAsync(backendUrl, new StringContent(JsonConvert.SerializeObject(requestObj)));
@@ -67,7 +68,7 @@ namespace TinyCMS.Node.ResizeImage
                         // TODO Maybe add som feature for reporting this
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // TODO Maybe add som feature for reporting this
                     //throw ex;

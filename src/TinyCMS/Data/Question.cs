@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using TinyCMS.Data;
 using System.ComponentModel;
+using TinyCMS.Data;
 
 namespace TinyCMS.QuestionNodes
 {
@@ -11,7 +11,9 @@ namespace TinyCMS.QuestionNodes
         public string Val { get; set; }
         public int Points { get; set; }
 
+#pragma warning disable 0067
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore
     }
 
     [Serializable]

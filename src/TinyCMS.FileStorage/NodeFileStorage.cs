@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using TinyCMS.Data;
 using TinyCMS.Data.Builder;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
-using TinyCMS.Data.Nodes;
 using TinyCMS.Data.Extensions;
+using TinyCMS.Data.Nodes;
 using TinyCMS.Interfaces;
 
 namespace TinyCMS.FileStorage
@@ -32,11 +32,11 @@ namespace TinyCMS.FileStorage
             {
                 ret = storageService.LoadContainer<T>(DataFilename);
             }
-            catch(Exception ex)
+            catch (Exception)
             {
                 ret = GenerateNewContainerData();
             }
-            if ((IContainer)ret==null)
+            if ((IContainer) ret == null)
                 ret = GenerateNewContainerData();
             ret.AfterRestore();
             watchContainer = ret;
@@ -50,8 +50,8 @@ namespace TinyCMS.FileStorage
             ret.RootNode = new Site() { Id = "root" }.Add(new Page()
             {
                 Name = "Error parsing",
-                TemplateId = "page",
-                Url = "/error"
+                    TemplateId = "page",
+                    Url = "/error"
             });
             return ret;
         }

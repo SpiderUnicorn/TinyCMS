@@ -393,10 +393,12 @@ namespace TinyCMS.Tests
 
         private class Deserialized
         {
+#pragma warning disable 0649
             public string id;
             public string parentId;
             public List<Deserialized> children;
             public List<Deserialized> relations;
+#pragma warning restore
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using TinyCMS.Security;
-using Microsoft.IdentityModel.Tokens;
 using System.Linq;
+using Microsoft.IdentityModel.Tokens;
+using TinyCMS.Security;
 
 namespace TinyCMS.Base.Security
 {
@@ -34,12 +34,12 @@ namespace TinyCMS.Base.Security
                 var claimsPrincipal = new JwtSecurityTokenHandler()
                     .ValidateToken(token, validationParameters, out var rawValidatedToken);
 
-                var data = (JwtSecurityToken)rawValidatedToken;
+                var data = (JwtSecurityToken) rawValidatedToken;
                 return data.Claims.Select(d => d.Value).ToArray();
                 // Or, you can return the ClaimsPrincipal
                 // (which has the JWT properties automatically mapped to .NET claims)
             }
-            catch (SecurityTokenValidationException stvex)
+            catch (SecurityTokenValidationException)
             {
                 return null;
             }

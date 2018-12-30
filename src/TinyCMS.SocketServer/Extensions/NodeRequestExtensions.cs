@@ -156,9 +156,9 @@ namespace TinyCMS.SocketServer
                         }
                         prp.SetValue(that, Convert.ChangeType(val, prp.PropertyType), null);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        var i = 2;
+                        // ignore
                     }
                 }
             }

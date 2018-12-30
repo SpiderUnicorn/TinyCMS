@@ -26,15 +26,15 @@ namespace TinyCMS.Data.Extensions
                 {
                     try
                     {
-                        if (val is JObject jobj)
+                        if (val is JObject jObject)
                         {
-                            val = jobj.ToObject<Dictionary<string, object>>();
+                            val = jObject.ToObject<Dictionary<string, object>>();
                         }
                         prp.SetValue(that, Convert.ChangeType(val, prp.PropertyType), null);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        var i = 2;
+                        // ignore
                     }
                 }
             }

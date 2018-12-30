@@ -2,8 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace TinyCMS.Security
 {
@@ -108,7 +108,7 @@ namespace TinyCMS.Security
 
                 return new BasicAuthenticationData(settings.GetSecurityKey(), googleApiTokenInfo.email, true, "admin");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

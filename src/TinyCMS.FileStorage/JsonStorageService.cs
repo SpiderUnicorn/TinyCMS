@@ -1,8 +1,8 @@
-﻿using TinyCMS.Interfaces;
-using Newtonsoft.Json;
+﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using TinyCMS.Data.Builder;
-using System;
+using TinyCMS.Interfaces;
 using TinyCMS.Storage;
 
 namespace TinyCMS.FileStorage
@@ -25,13 +25,13 @@ namespace TinyCMS.FileStorage
             var file = fileStorageService.RootDirectory.GetFile(fileName);
             if (file.Exists())
             {
-                using (var fs = file.OpenRead())
+                using(var fs = file.OpenRead())
                 {
-                    using (var streamReader = new StreamReader(fs))
+                    using(var streamReader = new StreamReader(fs))
                     {
-                        using (var jsonTextReader = new JsonTextReader(streamReader))
+                        using(var jsonTextReader = new JsonTextReader(streamReader))
                         {
-                            return (T)serializer.Deserialize<T>(jsonTextReader);
+                            return (T) serializer.Deserialize<T>(jsonTextReader);
                         }
                     }
                 }
@@ -47,19 +47,19 @@ namespace TinyCMS.FileStorage
             {
                 file.Delete();
             }
-            using (var fileStream = file.OpenWrite())
+            using(var fileStream = file.OpenWrite())
             {
-                using (var streamWriter = new StreamWriter(fileStream))
+                using(var streamWriter = new StreamWriter(fileStream))
                 {
-                    using (var jsonTextWriter = new JsonTextWriter(streamWriter))
+                    using(var jsonTextWriter = new JsonTextWriter(streamWriter))
                     {
                         try
                         {
                             serializer.Serialize(jsonTextWriter, container);
                         }
-                        catch (Exception error)
+                        catch (Exception)
                         {
-                            var i = 2;
+                            // Ignore
                         }
                     }
                 }

@@ -166,7 +166,7 @@ namespace TinyCMS.Tests
             var newnode = factory.GetNew("text");
 
             // Assert
-            Assert.Equal(newnode.GetType(), typeof(Text));
+            newnode.GetType().Should().Be(typeof(Text));
         }
 
         public class moving_nodes
