@@ -17,7 +17,11 @@ namespace TinyCMS.Serializer
         }
         public void WriteValue(object value)
         {
-            if (value is string valueString)
+            if (value is INode node)
+            {
+                WriteNode(node, 2);
+            }
+            else if (value is string valueString)
             {
                 WriteString(EscapeString(valueString));
             }
@@ -53,7 +57,7 @@ namespace TinyCMS.Serializer
             }
             else if (value is IEnumerable<object> array)
             {
-                WriteArray<object>(array, WriteNodeOrValue);
+                WriteArray<object>(array, WriteValue);
             }
             else
             {
@@ -111,10 +115,10 @@ namespace TinyCMS.Serializer
 
         public void WriteCommaSeparated<T>(IEnumerable<T> values, Action<T> fn)
         {
-            Iterate(values.GetEnumerator(), fn);
+            IterateCommaSeparated(values.GetEnumerator(), fn);
         }
 
-        private void Iterate<T>(IEnumerator<T> enumerator, Action<T> fn)
+        private void IterateCommaSeparated<T>(IEnumerator<T> enumerator, Action<T> fn)
         {
             var isFirst = true;
             while (enumerator.MoveNext())
@@ -130,7 +134,7 @@ namespace TinyCMS.Serializer
 
         public void WriteCommaSeparated<TKey, TValue>(Dictionary<TKey, TValue> values, Action<TKey, TValue> fn)
         {
-            Iterate(values.GetEnumerator(), entry => fn(entry.Key, entry.Value));
+            IterateCommaSeparated(values.GetEnumerator(), entry => fn(entry.Key, entry.Value));
         }
 
         public void WriteStringDictionary(Dictionary<string, string> dictionary)
@@ -144,7 +148,7 @@ namespace TinyCMS.Serializer
             WriteNode(node, 0, true, excludedProperties);
         }
 
-        private void WriteNode(INode node, int level = 0, bool fetchRelations = true, params string[] excludedProperties)
+        private void WriteNode(INode node, int level = 0, bool shouldIncludeRelations = true, params string[] excludedProperties)
         {
             Write(ObjectStart);
             if (node is null)
@@ -166,25 +170,21 @@ namespace TinyCMS.Serializer
 
             WriteStringDictionary(nodePropertiesToSerialize);
 
-            IEnumerable<INode> relations = null;
-            bool hasRelations = fetchRelations;
-            if (fetchRelations)
-            {
-                relations = Container.GetRelations(node);
-                hasRelations = relations.Any();
-            }
-
             if (HasChildren(node))
             {
                 Write(Comma);
                 WriteKey("children");
                 WriteArray(node.Children, child => WriteNode(child, level + 1, level < 2, excludedProperties));
             }
-            if (hasRelations)
+            if (shouldIncludeRelations)
             {
-                Write(Comma);
-                WriteKey("relations");
-                WriteArray(relations, child => WriteNode(child, level + 1, false, excludedProperties));
+                var relations = Container.GetRelations(node);
+                if (relations.Any())
+                {
+                    Write(Comma);
+                    WriteKey("relations");
+                    WriteArray(relations, child => WriteNode(child, level + 1, false, excludedProperties));
+                }
             }
 
             var extraProps = node.GetPropertyDictionary(excludedProperties);
@@ -199,13 +199,5 @@ namespace TinyCMS.Serializer
         }
 
         private bool HasChildren(INode node) => node.Children?.Any() ?? false;
-
-        private void WriteNodeOrValue(object item)
-        {
-            if (item is INode node)
-                WriteNode(node, 2);
-            else
-                WriteValue(item);
-        }
     }
 }

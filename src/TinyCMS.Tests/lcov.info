@@ -749,7 +749,7 @@ DA:51,0
 DA:52,0
 DA:53,61
 DA:54,61
-DA:55,61
+DA:55,60
 DA:57,61
 BRDA:30,2,0,61
 BRDA:30,2,1,0
@@ -797,7 +797,7 @@ DA:88,61
 DA:89,61
 DA:90,62
 DA:91,62
-DA:92,61
+DA:92,60
 FN:94,System.Void TinyCMS.Data.Builder.Container::AfterRestore()
 FNDA:0,System.Void TinyCMS.Data.Builder.Container::AfterRestore()
 DA:95,0
@@ -1445,216 +1445,219 @@ FN:11,TinyCMS.Interfaces.IContainer TinyCMS.Serializer.JsonNodeStreamWriter::get
 FNDA:28,TinyCMS.Interfaces.IContainer TinyCMS.Serializer.JsonNodeStreamWriter::get_Container()
 DA:12,28
 FN:18,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteValue(System.Object)
-FNDA:104,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteValue(System.Object)
-DA:19,104
-DA:20,104
-DA:21,6
-DA:22,6
-DA:23,6
-DA:24,98
-DA:25,13
-DA:26,13
-DA:27,13
-DA:28,85
+FNDA:105,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteValue(System.Object)
+DA:19,105
+DA:20,105
+DA:21,1
+DA:22,1
+DA:23,1
+DA:24,104
+DA:25,6
+DA:26,6
+DA:27,6
+DA:28,98
 DA:29,13
 DA:30,13
 DA:31,13
-DA:32,72
+DA:32,85
 DA:33,13
 DA:34,13
 DA:35,13
-DA:36,59
-DA:37,15
-DA:38,15
-DA:39,15
-DA:40,44
-DA:41,13
-DA:42,13
-DA:43,13
-DA:44,31
+DA:36,72
+DA:37,13
+DA:38,13
+DA:39,13
+DA:40,59
+DA:41,15
+DA:42,15
+DA:43,15
+DA:44,44
 DA:45,13
 DA:46,13
 DA:47,13
-DA:48,18
-DA:49,1
-DA:50,1
-DA:51,1
-DA:52,1
+DA:48,31
+DA:49,13
+DA:50,13
+DA:51,13
+DA:52,18
 DA:53,1
-DA:54,17
-DA:55,2
-DA:56,2
-DA:57,2
-DA:59,15
-DA:60,15
-DA:61,15
-DA:62,15
+DA:54,1
+DA:55,1
+DA:56,1
+DA:57,1
+DA:58,17
+DA:59,2
+DA:60,2
+DA:61,2
 DA:63,15
-DA:64,104
-BRDA:20,14,0,6
-BRDA:20,14,1,98
-BRDA:24,46,0,13
-BRDA:24,46,1,85
-BRDA:24,62,0,13
-BRDA:24,62,1,85
-BRDA:28,88,0,13
-BRDA:28,88,1,72
-BRDA:28,107,0,13
-BRDA:28,107,1,72
-BRDA:32,141,0,13
-BRDA:32,141,1,59
-BRDA:36,168,0,15
-BRDA:36,168,1,44
-BRDA:36,187,0,15
-BRDA:36,187,1,44
-BRDA:40,214,0,13
-BRDA:40,214,1,31
-BRDA:40,233,0,13
-BRDA:40,233,1,31
-BRDA:44,260,0,13
-BRDA:44,260,1,18
-BRDA:44,279,0,13
-BRDA:44,279,1,18
-BRDA:48,313,0,1
-BRDA:48,313,1,17
-BRDA:54,374,0,2
-BRDA:54,374,1,15
-FN:66,System.String TinyCMS.Serializer.JsonNodeStreamWriter::EscapeString(System.String)
+DA:64,15
+DA:65,15
+DA:66,15
+DA:67,15
+DA:68,105
+BRDA:20,14,0,1
+BRDA:20,14,1,104
+BRDA:24,51,0,6
+BRDA:24,51,1,98
+BRDA:28,83,0,13
+BRDA:28,83,1,85
+BRDA:28,102,0,13
+BRDA:28,102,1,85
+BRDA:32,129,0,13
+BRDA:32,129,1,72
+BRDA:32,148,0,13
+BRDA:32,148,1,72
+BRDA:36,182,0,13
+BRDA:36,182,1,59
+BRDA:40,209,0,15
+BRDA:40,209,1,44
+BRDA:40,228,0,15
+BRDA:40,228,1,44
+BRDA:44,255,0,13
+BRDA:44,255,1,31
+BRDA:44,274,0,13
+BRDA:44,274,1,31
+BRDA:48,301,0,13
+BRDA:48,301,1,18
+BRDA:48,320,0,13
+BRDA:48,320,1,18
+BRDA:52,354,0,1
+BRDA:52,354,1,17
+BRDA:58,415,0,2
+BRDA:58,415,1,15
+FN:70,System.String TinyCMS.Serializer.JsonNodeStreamWriter::EscapeString(System.String)
 FNDA:6,System.String TinyCMS.Serializer.JsonNodeStreamWriter::EscapeString(System.String)
-DA:67,6
-DA:68,6
-DA:69,6
-DA:70,6
 DA:71,6
 DA:72,6
 DA:73,6
-FN:75,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyAndValue(System.String,System.Object)
+DA:74,6
+DA:75,6
+DA:76,6
+DA:77,6
+FN:79,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyAndValue(System.String,System.Object)
 FNDA:102,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyAndValue(System.String,System.Object)
-DA:76,102
-DA:77,102
-DA:78,102
-DA:79,102
-FN:81,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteString(System.String)
+DA:80,102
+DA:81,102
+DA:82,102
+DA:83,102
+FN:85,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteString(System.String)
 FNDA:325,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteString(System.String)
-DA:82,325
-DA:83,325
-DA:84,325
-DA:85,325
 DA:86,325
-FN:87,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteBool(System.Boolean)
+DA:87,325
+DA:88,325
+DA:89,325
+DA:90,325
+FN:91,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteBool(System.Boolean)
 FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteBool(System.Boolean)
-DA:88,13
-BRDA:88,2,0,12
-BRDA:88,2,1,1
-FN:88,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteDateTime(System.DateTime)
-FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteDateTime(System.DateTime)
-DA:89,13
-FN:89,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteEnum(System.Enum)
-FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteEnum(System.Enum)
-DA:90,13
-FN:90,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Int32)
-FNDA:15,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Int32)
-DA:91,15
-FN:91,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Single)
-FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Single)
 DA:92,13
-FN:92,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Double)
-FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Double)
+BRDA:92,2,0,12
+BRDA:92,2,1,1
+FN:92,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteDateTime(System.DateTime)
+FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteDateTime(System.DateTime)
 DA:93,13
-FN:94,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyValueStrings(System.String,System.String)
+FN:93,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteEnum(System.Enum)
+FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteEnum(System.Enum)
+DA:94,13
+FN:94,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Int32)
+FNDA:15,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Int32)
+DA:95,15
+FN:95,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Single)
+FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Single)
+DA:96,13
+FN:96,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Double)
+FNDA:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNumber(System.Double)
+DA:97,13
+FN:98,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyValueStrings(System.String,System.String)
 FNDA:96,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKeyValueStrings(System.String,System.String)
-DA:95,96
-DA:96,96
-DA:97,96
-DA:98,96
-FN:100,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKey(System.String)
+DA:99,96
+DA:100,96
+DA:101,96
+DA:102,96
+FN:104,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKey(System.String)
 FNDA:210,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteKey(System.String)
-DA:101,210
-DA:102,210
-DA:103,210
-DA:104,210
-FN:105,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteArray(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
+DA:105,210
+DA:106,210
+DA:107,210
+DA:108,210
+FN:109,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteArray(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
 FNDA:14,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteArray(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
-DA:106,14
-DA:107,14
-DA:108,14
-DA:109,14
 DA:110,14
-FN:112,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
-FNDA:14,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
+DA:111,14
+DA:112,14
 DA:113,14
 DA:114,14
-DA:115,14
-FN:117,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::Iterate(System.Collections.Generic.IEnumerator`1<T>,System.Action`1<T>)
-FNDA:83,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::Iterate(System.Collections.Generic.IEnumerator`1<T>,System.Action`1<T>)
-DA:118,83
-DA:119,83
-DA:120,303
-DA:121,220
-DA:122,220
-DA:123,150
-DA:124,150
-DA:125,150
+FN:116,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
+FNDA:14,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.IEnumerable`1<T>,System.Action`1<T>)
+DA:117,14
+DA:118,14
+DA:119,14
+FN:121,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::IterateCommaSeparated(System.Collections.Generic.IEnumerator`1<T>,System.Action`1<T>)
+FNDA:83,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::IterateCommaSeparated(System.Collections.Generic.IEnumerator`1<T>,System.Action`1<T>)
+DA:122,83
+DA:123,83
+DA:124,303
+DA:125,220
 DA:126,220
-DA:127,220
-DA:128,220
-DA:129,83
-BRDA:120,49,1,220
-BRDA:122,12,0,150
-BRDA:122,12,1,220
-BRDA:120,49,0,83
-FN:131,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.Dictionary`2<TKey,TValue>,System.Action`2<TKey,TValue>)
+DA:127,150
+DA:128,150
+DA:129,150
+DA:130,220
+DA:131,220
+DA:132,220
+DA:133,83
+BRDA:124,49,1,220
+BRDA:126,12,0,150
+BRDA:126,12,1,220
+BRDA:124,49,0,83
+FN:135,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.Dictionary`2<TKey,TValue>,System.Action`2<TKey,TValue>)
 FNDA:69,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteCommaSeparated(System.Collections.Generic.Dictionary`2<TKey,TValue>,System.Action`2<TKey,TValue>)
-DA:132,69
-DA:133,267
-DA:134,69
-FN:136,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteStringDictionary(System.Collections.Generic.Dictionary`2<System.String,System.String>)
+DA:136,69
+DA:137,267
+DA:138,69
+FN:140,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteStringDictionary(System.Collections.Generic.Dictionary`2<System.String,System.String>)
 FNDA:40,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteStringDictionary(System.Collections.Generic.Dictionary`2<System.String,System.String>)
-DA:137,40
-DA:138,40
-DA:139,40
-FN:141,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Boolean,System.String[])
+DA:141,40
+DA:142,40
+DA:143,40
+FN:145,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Boolean,System.String[])
 FNDA:21,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Boolean,System.String[])
-DA:142,21
-DA:144,21
-DA:145,21
-FN:147,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Int32,System.Boolean,System.String[])
+DA:146,21
+DA:148,21
+DA:149,21
+FN:151,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Int32,System.Boolean,System.String[])
 FNDA:41,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNode(TinyCMS.Interfaces.INode,System.Int32,System.Boolean,System.String[])
-DA:148,41
-DA:149,41
-DA:150,41
-DA:151,1
-DA:152,1
-DA:153,1
-DA:156,40
-DA:157,40
-DA:158,40
-DA:159,40
+DA:152,41
+DA:153,41
+DA:154,41
+DA:155,1
+DA:156,1
+DA:157,1
 DA:160,40
+DA:161,40
 DA:162,40
-DA:163,16
-DA:164,16
-DA:165,16
-DA:167,40
-DA:169,40
-DA:170,40
+DA:163,40
+DA:164,40
+DA:166,40
+DA:167,16
+DA:168,16
+DA:169,16
 DA:171,40
-DA:172,28
-DA:173,28
-DA:174,28
-DA:175,28
-DA:177,40
+DA:173,40
+DA:174,7
+DA:175,7
+DA:176,7
+DA:177,20
 DA:178,7
-DA:179,7
-DA:180,7
-DA:181,20
-DA:182,7
-DA:183,40
+DA:179,40
+DA:180,28
+DA:181,28
+DA:182,28
+DA:183,5
 DA:184,5
 DA:185,5
-DA:186,5
-DA:187,11
-DA:188,5
+DA:186,11
+DA:187,5
+DA:188,28
 DA:190,40
 DA:191,40
 DA:192,40
@@ -1664,44 +1667,35 @@ DA:195,13
 DA:196,13
 DA:198,40
 DA:199,41
-BRDA:150,46,0,1
-BRDA:150,46,1,40
-BRDA:162,123,0,16
-BRDA:162,123,1,40
-BRDA:171,162,0,28
-BRDA:171,162,1,40
-BRDA:177,197,0,7
-BRDA:177,197,1,40
-BRDA:183,252,0,5
-BRDA:183,252,1,40
-BRDA:192,331,0,13
-BRDA:192,331,1,40
+BRDA:154,46,0,1
+BRDA:154,46,1,40
+BRDA:166,123,0,16
+BRDA:166,123,1,40
+BRDA:173,164,0,7
+BRDA:173,164,1,40
+BRDA:179,219,0,28
+BRDA:182,247,0,5
+BRDA:182,247,1,28
+BRDA:179,219,1,40
+BRDA:192,324,0,13
+BRDA:192,324,1,40
 FN:200,System.Boolean TinyCMS.Serializer.JsonNodeStreamWriter::HasChildren(TinyCMS.Interfaces.INode)
 FNDA:40,System.Boolean TinyCMS.Serializer.JsonNodeStreamWriter::HasChildren(TinyCMS.Interfaces.INode)
 DA:201,40
 BRDA:201,7,0,1
 BRDA:201,7,1,39
-FN:203,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNodeOrValue(System.Object)
-FNDA:3,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::WriteNodeOrValue(System.Object)
-DA:204,3
-DA:205,3
-DA:206,1
-DA:208,2
-DA:209,3
-BRDA:205,14,0,1
-BRDA:205,14,1,2
 FN:13,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::.ctor(System.IO.Stream,TinyCMS.Interfaces.IContainer)
 FNDA:21,System.Void TinyCMS.Serializer.JsonNodeStreamWriter::.ctor(System.IO.Stream,TinyCMS.Interfaces.IContainer)
 DA:14,21
 DA:15,21
 DA:16,21
 DA:17,21
-LF:159
-LH:159
+LF:155
+LH:155
 BRF:50
 BRH:50
-FNF:23
-FNH:23
+FNF:22
+FNH:22
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.NodeSerializer/NodeSerializer.cs
 FN:23,System.ArraySegment`1<System.Byte> TinyCMS.Serializer.NodeSerializer::ToArraySegment(TinyCMS.Interfaces.INode,System.Boolean)
