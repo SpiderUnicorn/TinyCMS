@@ -34,19 +34,19 @@ public class SocketConnectionHandler
     {
         if (IsOpen)
         {
-            // validera
+            // validate
             if (IsValidToken(node, CurrentToken))
             {
                 // ...
             }
 
-            // seralizera
+            // serialize
             var dataToSend = serializer.ToArraySegment(
-                node: container.RootNode,
-                fetchRelations: true
+                node: container.RootNode, //node -citat Mats
+                fetchRelations : true
             );
 
-            // skicka
+            // send
             socket.SendAsync(
                 buffer: dataToSend,
                 messageType: WebSocketMessageType.Text,

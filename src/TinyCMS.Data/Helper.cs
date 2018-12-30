@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +16,8 @@ namespace TinyCMS.Serializer
 
         private static string[] NODE_PROPERTIES = { "Id", "ParentId", "Children", "Tags", "Type", "IsParsed" };
 
-        private static Dictionary<Type, Dictionary<string, PropertyInfo>> props =
-            new Dictionary<Type, Dictionary<string, PropertyInfo>>();
+        private static ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>> props =
+            new ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>>();
 
         public static Dictionary<string, PropertyInfo> FilterExcluded(this Dictionary<string, PropertyInfo> dict, bool isNode, params string[] excludedProperties)
         {
@@ -66,7 +67,8 @@ namespace TinyCMS.Serializer
                     var key = property.Name.ToLowerFirst();
                     dict.Add(key, property);
                 }
-                props.Add(type, dict);
+
+                props.TryAdd(type, dict);
             }
 
             return dict;

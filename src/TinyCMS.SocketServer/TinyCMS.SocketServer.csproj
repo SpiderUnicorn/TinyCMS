@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>TinyCMS.SocketServer</PackageId>
     <Authors>Mats Törnberg</Authors>
@@ -14,9 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +21,7 @@
     <ProjectReference Include="..\TinyCMS.Data\TinyCMS.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.2.0-preview3-35497" />
+    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.2.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
 </Project>

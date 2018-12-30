@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.Hosting;
@@ -22,20 +23,6 @@ namespace TinyCMS.Tests
 {
     public class SocketConnectionHandlerTests
     {
-        [Fact]
-        public static void hest()
-        {
-            // Arrange
-            var node = new Page { Id = "root" };
-            var container = new Container(node);
-            var factory = new NodeTypeFactory();
-            var serializer = new NodeSerializer(container);
-            var settings = new JWTSettings("anykey");
-            var decoder = new TokenDecoder(settings);
-
-            var server = new SocketNodeServer(container, factory, serializer, decoder);
-
-        }
 
     }
 }
