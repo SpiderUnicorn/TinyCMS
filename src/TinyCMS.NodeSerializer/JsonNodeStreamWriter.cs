@@ -118,17 +118,13 @@ namespace TinyCMS.Serializer
                     WriteNumber(doubleNumber);
                     break;
                 case Dictionary<string, object> dictionary:
-                    Write(ObjectStart);
-                    WriteCommaSeparated(dictionary, WriteKeyAndValue);
-                    Write(ObjectEnd);
+                    WriteObject(dictionary);
                     break;
                 case IEnumerable<object> array:
                     WriteArray<object>(array, WriteValue);
                     break;
                 default:
-                    Write(ObjectStart);
-                    WriteCommaSeparated(value.GetPropertyDictionary(), WriteKeyAndValue);
-                    Write(ObjectEnd);
+                    WriteObject(value.GetPropertyDictionary());
                     break;
             }
         }
@@ -206,6 +202,13 @@ namespace TinyCMS.Serializer
         private void WriteStringDictionary(Dictionary<string, string> dictionary)
         {
             WriteCommaSeparated(dictionary, WriteKeyValueStrings);
+        }
+
+        private void WriteObject(Dictionary<string, object> propertyDictionary)
+        {
+            Write(ObjectStart);
+            WriteCommaSeparated(propertyDictionary, WriteKeyAndValue);
+            Write(ObjectEnd);
         }
 
         private bool HasChildren(INode node) => node.Children?.Any() ?? false;
