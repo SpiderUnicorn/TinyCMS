@@ -380,10 +380,6 @@ namespace TinyCMS.Tests
 
         private static string Serialize(INode node, IContainer container = null, bool fetchRelations = false)
         {
-            if (container == null)
-            {
-                container = new Container();
-            }
             var serializer = NodeSerializerTests.GetSerializer(container);
             var arraySegment = serializer.ToArraySegment(node, fetchRelations : fetchRelations);
             return Encoding.ASCII.GetString(arraySegment);
