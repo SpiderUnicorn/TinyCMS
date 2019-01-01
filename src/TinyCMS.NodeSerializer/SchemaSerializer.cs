@@ -17,6 +17,7 @@ namespace TinyCMS.Serializer
         {
             var output = new SchemaStreamWriter(stream);
             output.WriteSchema(type);
+            output.Flush();
         }
     }
 }
