@@ -17,7 +17,6 @@ namespace TinyCMS.FileStorage
         {
             this.fileStorageService = fileStorageService;
             this.serializer = JsonSerializer.CreateDefault();
-
         }
 
         public T LoadContainer<T>(string fileName)
@@ -47,6 +46,7 @@ namespace TinyCMS.FileStorage
             {
                 file.Delete();
             }
+
             using(var fileStream = file.OpenWrite())
             {
                 using(var streamWriter = new StreamWriter(fileStream))

@@ -89,7 +89,7 @@ namespace TinyCMS.Serializer
             }
         }
 
-        protected override void WriteValue(object value)
+        public override void WriteValue(object value)
         {
             if (value is INode node)
             {

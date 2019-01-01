@@ -43,13 +43,11 @@ namespace TinyCMS.Controllers
             _serializer.StreamSchema(_factory.GetTypeByName(type), Response.Body);
         }
 
-        /*
         [HttpGet]
         public void GetAll()
         {
             SendOkJson();
-            _serializer.WriteValue(Response.Body, _factory.RegisterdTypeNames());
+            _serializer.StreamTypes(Response.Body, _factory.RegisterdTypeNames());
         }
-        */
     }
 }

@@ -1,15 +1,16 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using TinyCMS.Interfaces;
-using TinyCMS.FileStorage;
-using TinyCMS.Security;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
 using TinyCMS.Base.Security;
+using TinyCMS.FileStorage;
+using TinyCMS.Interfaces;
+using TinyCMS.Security;
+using TinyCMS.Serializer;
 
 namespace TinyCMS.Base
 {
@@ -53,43 +54,41 @@ namespace TinyCMS.Base
             var nodeFactory = settings.NodeFactoryInstance;
 
             services
-                .AddSingleton<ITokenDecoder,TokenDecoder>()
+                .AddSingleton<ITokenDecoder, TokenDecoder>()
                 .AddSingleton(nodeFactory)
-                .AddSingleton(typeof(IStorageService),settings.StorageService)
+                .AddSingleton(typeof(IStorageService), settings.StorageService)
                 .AddSingleton(settings.JWTSettings)
-                .AddSingleton(typeof(INodeStorage),settings.NodeStorage)
-                .AddSingleton(typeof(INodeSerializer),settings.NodeSerializer)
-                .AddSingleton(typeof(ITokenValidator),settings.TokenValidator)
+                .AddSingleton(typeof(INodeStorage), settings.NodeStorage)
+                .AddSingleton(typeof(INodeSerializer), settings.NodeSerializer)
+                .AddSingleton(typeof(SchemaSerializer), settings.SchemaSerializer)
+                .AddSingleton(typeof(ITokenValidator), settings.TokenValidator)
                 .AddSingleton((sp) =>
                 {
                     return sp.GetService<INodeStorage>().Load();
                 });
 
-
-
             if (settings.UseAuthentication)
             {
                 services.AddAuthentication(x =>
-                 {
-                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                 })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = settings.JWTSettings.GetSecurityKey(),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+                    {
+                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(x =>
+                    {
+                        x.RequireHttpsMetadata = false;
+                        x.SaveToken = true;
+                        x.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = settings.JWTSettings.GetSecurityKey(),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
             }
             return services;
         }
-
 
     }
 }

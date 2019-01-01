@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using TinyCMS.Data.Extensions;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 using TinyCMS.Commerce;
-using TinyCMS.Commerce.Services;
 using TinyCMS.Commerce.Models;
+using TinyCMS.Commerce.Services;
 
 namespace TinyCMS.Controllers
 {
@@ -24,13 +24,11 @@ namespace TinyCMS.Controllers
             this.orderService = factory.OrderService;
         }
 
-
         [HttpGet]
         public JsonResult Get()
         {
             return Json(orderService.GetNewOrder());
         }
-
 
         [HttpGet("{id}")]
         public JsonResult Get(string id)
@@ -38,14 +36,13 @@ namespace TinyCMS.Controllers
             return Json(orderService.GetOrder(id));
         }
 
-
         [HttpPut("{id}")]
-        public JsonResult Put(string id, [FromBody]Dictionary<string,object> articleData)
+        public JsonResult Put(string id, [FromBody] Dictionary<string, object> articleData)
         {
             var order = orderService.GetOrder(id);
             var articleNr = articleData["articleNr"] as string;
             var orgArticle = factory.ArticleService.GetByArticleNr(articleNr);
-            if (orgArticle==null)
+            if (orgArticle == null)
             {
                 orgArticle = factory.CreateInstance<IArticle>();
             }
@@ -56,7 +53,6 @@ namespace TinyCMS.Controllers
 
         [HttpDelete("{id}")]
         public void Delete(int id)
-        {
-        }
+        { }
     }
 }

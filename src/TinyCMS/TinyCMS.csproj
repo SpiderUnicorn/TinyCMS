@@ -31,7 +31,6 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <!-- Specifying the version is of AspNetCore.All not recommended, but required for us to resolve conflicts -->
     <PackageReference Include="Microsoft.AspNetCore.All"  />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />

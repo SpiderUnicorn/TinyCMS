@@ -31,7 +31,7 @@ namespace TinyCMS.Serializer
         /// a matching write function.
         /// </summary>
         /// <param name="value">The value to serialize</param>
-        protected virtual void WriteValue(object value)
+        public virtual void WriteValue(object value)
         {
             switch (value)
             {
