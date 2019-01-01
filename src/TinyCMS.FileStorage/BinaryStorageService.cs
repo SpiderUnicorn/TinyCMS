@@ -21,9 +21,9 @@ namespace TinyCMS.FileStorage
             var file = fileStorageService.RootDirectory.GetFile(fileName);
             if (file.Exists())
             {
-                using (var fs = file.OpenRead())
+                using(var fs = file.OpenRead())
                 {
-                    return (T)formatter.Deserialize(fs);
+                    return (T) formatter.Deserialize(fs);
                 }
             }
             return default(T);
@@ -32,7 +32,7 @@ namespace TinyCMS.FileStorage
         public void SaveContainer(IContainer container, string fileName)
         {
             var file = fileStorageService.RootDirectory.GetFile(fileName);
-            using (var fileStream = file.OpenWrite())
+            using(var fileStream = file.OpenWrite())
             {
                 formatter.Serialize(fileStream, container);
                 container.IsDirty = false;

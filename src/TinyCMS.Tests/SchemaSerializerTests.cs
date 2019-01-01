@@ -17,6 +17,7 @@ using TinyCMS.FileStorage;
 using TinyCMS.Interfaces;
 using TinyCMS.Security;
 using TinyCMS.Serializer;
+using TinyCMS.Tests.Extensions;
 using Xunit;
 using Xunit.Extensions;
 
@@ -138,11 +139,4 @@ namespace TinyCMS.Tests
         }
     }
 
-    public static class StringExtensions
-    {
-        public static T ToJson<T>(this string value)
-        {
-            return JsonConvert.DeserializeObject<T>(value);
-        }
-    }
 }
