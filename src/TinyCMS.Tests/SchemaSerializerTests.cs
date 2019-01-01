@@ -24,22 +24,27 @@ namespace TinyCMS.Tests
     public class SchemaSerializerTests
     {
         [Fact]
-        public static void includes_properties_of_given_type()
+        public void includes_properties_of_given_type()
         {
             // Arrange
             var serializer = new SchemaSerializer();
-            var output = new MemoryStream();
 
             // Act
+            var result = GetSchema(serializer, typeof(INode));
+
+            // Assert
+            result.Should().Contain("id")
+                .And.Contain("parentId")
+                .And.Contain("type");
+        }
+
+        private string GetSchema(SchemaSerializer serializer, Type type)
+        {
+            var output = new MemoryStream();
             serializer.StreamSchema(typeof(INode), output);
             StreamReader reader = new StreamReader(output);
             output.Seek(0, SeekOrigin.Begin);
-            string text = reader.ReadToEnd();
-
-            // Assert
-            text.Should().Contain("id")
-                .And.Contain("parentId")
-                .And.Contain("type");
+            return reader.ReadToEnd();
         }
     }
 }
