@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,28 +24,125 @@ namespace TinyCMS.Tests
 {
     public class SchemaSerializerTests
     {
+        [Description("included-class-description")]
+        private class TypeWithProperties
+        {
+            public int Foo { get; set; }
+
+            [EditorType("included-editor-type-property")]
+
+            [Description("not-included-property-description")]
+            public string Bar { get; set; }
+        }
+
+        private class WithSchemaAttribute
+        {
+            [SchemaType("included-schema-type-property")]
+            public int Foo { get; set; }
+        }
+
+        private class Schema
+        {
+            public string id = "http://tinycms.com/schema/typeWithProperties.schema.json";
+            public string type = "object";
+
+            public Dictionary<string, dynamic> properties;
+        }
+
+        private struct PropertyType
+        {
+            private string type;
+            public PropertyType(string type)
+            {
+                this.type = type;
+            }
+        }
+
         [Fact]
         public void includes_properties_of_given_type()
         {
             // Arrange
-            var serializer = new SchemaSerializer();
+            var expected = new Dictionary<string, PropertyType>
+                {
+                    ["foo"] = new PropertyType("int32"),
+                    ["bar"] = new PropertyType("string")
+                };
 
             // Act
-            var result = GetSchema(serializer, typeof(INode));
+            var result = GetSchema<TypeWithProperties>().ToJson<Schema>();
 
             // Assert
-            result.Should().Contain("id")
-                .And.Contain("parentId")
-                .And.Contain("type");
+            result.properties.Should().ContainKeys("foo", "bar");
         }
 
-        private string GetSchema(SchemaSerializer serializer, Type type)
+        [Fact]
+        public void includes_description_attribute_on_types()
         {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<TypeWithProperties>();
+
+            // Assert
+            result.Should().Contain("included-class-description");
+        }
+
+        [Fact]
+        public void does_not_include_description_attribute_on_values()
+        {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<TypeWithProperties>();
+
+            // Assert
+            result.Should().NotContain("not-included-property-description");
+        }
+
+        [Fact]
+        public void includes_editor_type_attribute_on_values()
+        {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<TypeWithProperties>();
+
+            // Assert
+            result.Should().Contain("included-editor-type-property");
+        }
+
+        [Fact]
+        public void includes_schema_type_attribute_on_values()
+        {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<WithSchemaAttribute>();
+
+            // Assert
+            result.Should().Contain("included-schema-type-property");
+        }
+
+        private string GetSchema<T>()
+        {
+            var serializer = new SchemaSerializer();
             var output = new MemoryStream();
-            serializer.StreamSchema(typeof(INode), output);
+            serializer.StreamSchema(typeof(T), output);
             StreamReader reader = new StreamReader(output);
             output.Seek(0, SeekOrigin.Begin);
             return reader.ReadToEnd();
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static T ToJson<T>(this string value)
+        {
+            return JsonConvert.DeserializeObject<T>(value);
         }
     }
 }

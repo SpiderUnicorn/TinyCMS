@@ -17,8 +17,6 @@ namespace TinyCMS.Serializer
     {
         public IContainer Container { get; }
 
-        public NodeStreamWriter(Stream stream) : base(stream) { }
-
         public NodeStreamWriter(Stream stream, IContainer container) : base(stream)
         {
             Container = container;
