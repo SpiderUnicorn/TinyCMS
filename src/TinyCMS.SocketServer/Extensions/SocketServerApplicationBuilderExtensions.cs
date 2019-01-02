@@ -16,7 +16,7 @@ namespace TinyCMS.SocketServer
         /// Adds TintCMS Socket Server to the <see cref="IApplicationBuilder"/> request execution pipeline.
         /// </summary>
         /// <param name="app">The <see cref="IApplicationBuilder"/>.</param>
-        public static void UseSocketServer(this IApplicationBuilder app)
+        public static void UseTinyCms(this IApplicationBuilder app)
         {
             VerifyTinyCmsIsRegistered(app);
             // Using all defaults. Should this be set?

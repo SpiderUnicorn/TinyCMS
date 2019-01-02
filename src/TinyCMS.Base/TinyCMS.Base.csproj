@@ -16,7 +16,6 @@
     <ProjectReference Include="..\TinyCMS.Interfaces\TinyCMS.Interfaces.csproj" />
     <ProjectReference Include="..\TinyCMS.NodeSerializer\TinyCMS.NodeSerializer.csproj" />
     <ProjectReference Include="..\TinyCMS.SocketServer\TinyCMS.SocketServer.csproj" />
-    <ProjectReference Include="..\TinyCMS.FileStorage\TinyCMS.FileStorage.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Security\" />

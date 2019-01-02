@@ -43,8 +43,20 @@ namespace TinyCMS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             var secretKey = Configuration["JWTSecret"];
-            services.AddTinyCMS(secretKey);
+
+            services.AddTinyCMS((configure) =>
+                {
+                    configure.AddAssemblyWithNodes<Question>();
+                    configure.AddAssemblyWithNodes<ResizeImage>();
+                    configure.AddAssemblyWithNodes<Commerce.Nodes.Product>();
+
+                    JsonConvert.DefaultSettings = (() => ConfigureCmsSettings(configure.NodeFactoryInstance));
+                })
+                .AddFileStorage()
+                .AddCommerce()
+                .AddJwtAuthentication(secretKey);
 
             services.AddProxy()
                 .AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "TinyCMS API", Version = "v1" }); })
@@ -61,6 +73,17 @@ namespace TinyCMS
                     });
                     options.SerializerSettings.ObjectCreationHandling = ObjectCreationHandling.Replace;
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
+
+        public static JsonSerializerSettings ConfigureCmsSettings(INodeTypeFactory factory)
+        {
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            settings.Converters.Add(new JsonNodeConverter(factory));
+            settings.Converters.Add(new JsonMappedInterfaceConverter());
+            return settings;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +110,7 @@ namespace TinyCMS
 
             app.UseProxy("/shopproxy", "https://www.bygglagret.se/Core.WebShop,Core.WebShop.ShopCommon.asmx");
 
-            app.UseSocketServer();
+            app.UseTinyCms();
             app.UseMvc();
             app.UseSpa(spa =>
             {

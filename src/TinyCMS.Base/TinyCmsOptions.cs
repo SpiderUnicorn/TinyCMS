@@ -45,10 +45,8 @@ namespace TinyCMS.Base
         public List<Assembly> AssembliesWithNodes = new List<Assembly>();
         public Type NodeContainer { get; set; } = typeof(Container);
         public Type NodeTypeFactory { get; set; } = typeof(NodeTypeFactory);
-        public Type NodeStorage { get; set; } = typeof(NodeFileStorage<Container>);
         public Type NodeSerializer { get; set; } = typeof(NodeSerializer);
         public Type SchemaSerializer { get; set; } = typeof(SchemaSerializer);
-        public Type StorageService { get; set; } = typeof(JsonStorageService);
         public Type TokenValidator { get; set; } = typeof(GoogleTokenValidator);
 
         private INodeTypeFactory _factory;
@@ -65,7 +63,6 @@ namespace TinyCMS.Base
             }
         }
 
-        public IJWTSettings JWTSettings { get; set; } = new JWTSettings("developmentkey-change-this-setting");
-        public bool UseAuthentication { get; set; } = true;
+        // public IJWTSettings JWTSettings { get; set; } = new JWTSettings("developmentkey-change-this-setting");
     }
 }

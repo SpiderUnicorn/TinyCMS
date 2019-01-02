@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
     <Owners>Mats Törnberg</Owners>
     <PackageProjectUrl>https://github.com/matst80/TinyCMS</PackageProjectUrl>
@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TinyCMS.Data\TinyCMS.Data.csproj" />
     <ProjectReference Include="..\TinyCMS.Interfaces\TinyCMS.Interfaces.csproj" />
+    <ProjectReference Include="..\TinyCMS.Base\TinyCMS.Base.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="JsonCreationConverter.cs" />

@@ -4,7 +4,7 @@ namespace TinyCMS.Data
 {
     public class SchemaTypeAttribute : Attribute
     {
-        public const string SCHEMA_PREFIX = "http://tinycms.com/schema/";
+        public static string SCHEMA_PREFIX = "http://tinycms.com/schema/";
 
         public SchemaTypeAttribute(string schema, bool isUri = false)
         {
