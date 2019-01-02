@@ -6,10 +6,19 @@ using TinyCMS.Interfaces;
 
 namespace TinyCMS.SocketServer
 {
-    public static class ApplicationBuilderExtensions
+    /// <summary>
+    /// Extension methods for <see cref="IApplicationBuilder"/> to add TinyCMS Websocket requests to the request execution pipeline.
+    /// </summary>
+    public static class SocketServerApplicationBuilderExtensions
     {
-        public static void UseSocketServer(this IApplicationBuilder app, IServiceProvider serviceProvider)
+
+        /// <summary>
+        /// Adds TintCMS Socket Server to the <see cref="IApplicationBuilder"/> request execution pipeline.
+        /// </summary>
+        /// <param name="app">The <see cref="IApplicationBuilder"/>.</param>
+        public static void UseSocketServer(this IApplicationBuilder app)
         {
+            // Using all defaults. Should this be set?
             var webSocketOptions = new WebSocketOptions()
             {
                 KeepAliveInterval = TimeSpan.FromSeconds(120),
@@ -17,10 +26,12 @@ namespace TinyCMS.SocketServer
             };
             app.UseWebSockets(webSocketOptions);
 
-            var container = serviceProvider.GetService(typeof(IContainer)) as IContainer;
-            var nodeTypeFactory = serviceProvider.GetService(typeof(INodeTypeFactory)) as INodeTypeFactory;
-            var nodeSerializer = serviceProvider.GetService(typeof(INodeSerializer)) as INodeSerializer;
-            var tokenValidator = serviceProvider.GetService(typeof(ITokenDecoder)) as ITokenDecoder;
+            IServiceProvider services = app.ApplicationServices;
+
+            var container = services.GetService(typeof(IContainer)) as IContainer;
+            var nodeTypeFactory = services.GetService(typeof(INodeTypeFactory)) as INodeTypeFactory;
+            var nodeSerializer = services.GetService(typeof(INodeSerializer)) as INodeSerializer;
+            var tokenValidator = services.GetService(typeof(ITokenDecoder)) as ITokenDecoder;
 
             SocketNodeServer server = new SocketNodeServer(container, nodeTypeFactory, nodeSerializer, tokenValidator);
             app.Use(async(context, next) =>
