@@ -91,34 +91,45 @@ FNF:4
 FNH:4
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS/TinyCMSServiceCollectionExtension.cs
-FN:26,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.TinyCMSServiceCollectionExtensions::ConfigureCMS(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
-FNDA:1,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.TinyCMSServiceCollectionExtensions::ConfigureCMS(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
-DA:27,1
-DA:28,1
+FN:29,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.TinyCMSServiceCollectionExtensions::AddTinyCMS(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
+FNDA:1,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.TinyCMSServiceCollectionExtensions::AddTinyCMS(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)
 DA:30,1
 DA:31,1
-DA:32,2
 DA:33,1
-DA:34,2
+DA:34,1
+DA:35,2
 DA:36,1
 DA:37,2
-DA:38,2
-DA:39,2
+DA:39,1
 DA:40,2
 DA:41,2
-DA:42,1
-DA:43,9
+DA:42,2
+DA:43,2
 DA:44,2
-DA:46,1
-DA:47,1
-BRDA:31,39,0,1
-BRDA:31,39,1,1
-LF:18
-LH:18
+DA:45,1
+DA:46,10
+DA:47,2
+DA:49,1
+DA:50,1
+BRDA:34,39,0,1
+BRDA:34,39,1,1
+FN:52,Newtonsoft.Json.JsonSerializerSettings TinyCMS.TinyCMSServiceCollectionExtensions::ConfigureCmsSettings(TinyCMS.Interfaces.INodeTypeFactory)
+FNDA:8,Newtonsoft.Json.JsonSerializerSettings TinyCMS.TinyCMSServiceCollectionExtensions::ConfigureCmsSettings(TinyCMS.Interfaces.INodeTypeFactory)
+DA:53,8
+DA:54,8
+DA:55,8
+DA:56,8
+DA:57,8
+DA:58,8
+DA:59,8
+DA:60,8
+DA:61,8
+LF:27
+LH:27
 BRF:2
 BRH:2
-FNF:1
-FNH:1
+FNF:2
+FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS/Nodes/ThreeRenderer.cs
 FN:7,System.String TinyCMS.Nodes.ThreeRenderer::get_Type()
@@ -318,10 +329,10 @@ FNH:0
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Data/JsonShopNodeConverter.cs
 FN:12,System.Boolean TinyCMS.JsonMappedInterfaceConverter::CanConvert(System.Type)
-FNDA:1333,System.Boolean TinyCMS.JsonMappedInterfaceConverter::CanConvert(System.Type)
-DA:13,1333
-DA:14,1333
-DA:15,1333
+FNDA:1351,System.Boolean TinyCMS.JsonMappedInterfaceConverter::CanConvert(System.Type)
+DA:13,1351
+DA:14,1351
+DA:15,1351
 FN:17,System.Object TinyCMS.JsonMappedInterfaceConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 FNDA:0,System.Object TinyCMS.JsonMappedInterfaceConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 DA:18,0
@@ -361,10 +372,10 @@ FNH:1
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Data/JsonNodeConverter.cs
 FN:21,System.Boolean TinyCMS.FileStorage.JsonNodeConverter::CanConvert(System.Type)
-FNDA:1436,System.Boolean TinyCMS.FileStorage.JsonNodeConverter::CanConvert(System.Type)
-DA:22,1436
-DA:23,1436
-DA:24,1436
+FNDA:1454,System.Boolean TinyCMS.FileStorage.JsonNodeConverter::CanConvert(System.Type)
+DA:22,1454
+DA:23,1454
+DA:24,1454
 FN:26,System.Object TinyCMS.FileStorage.JsonNodeConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 FNDA:102,System.Object TinyCMS.FileStorage.JsonNodeConverter::ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)
 DA:27,102
@@ -403,12 +414,12 @@ BRDA:54,81,0,0
 BRDA:54,81,1,0
 BRDA:51,114,0,0
 FN:11,System.Void TinyCMS.FileStorage.JsonNodeConverter::.ctor(TinyCMS.Interfaces.INodeTypeFactory)
-FNDA:7,System.Void TinyCMS.FileStorage.JsonNodeConverter::.ctor(TinyCMS.Interfaces.INodeTypeFactory)
-DA:12,7
-DA:13,7
-DA:14,7
-DA:15,7
-DA:17,7
+FNDA:8,System.Void TinyCMS.FileStorage.JsonNodeConverter::.ctor(TinyCMS.Interfaces.INodeTypeFactory)
+DA:12,8
+DA:13,8
+DA:14,8
+DA:15,8
+DA:17,8
 LF:33
 LH:20
 BRF:6
@@ -418,24 +429,24 @@ FNH:4
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Data/Helper.cs
 FN:12,System.String TinyCMS.Serializer.Helper::ToLowerFirst(System.String)
-FNDA:145,System.String TinyCMS.Serializer.Helper::ToLowerFirst(System.String)
-DA:13,145
-DA:14,145
-DA:15,145
+FNDA:143,System.String TinyCMS.Serializer.Helper::ToLowerFirst(System.String)
+DA:13,143
+DA:14,143
+DA:15,141
 FN:22,System.Collections.Generic.Dictionary`2<System.String,System.Reflection.PropertyInfo> TinyCMS.Serializer.Helper::FilterExcluded(System.Collections.Generic.Dictionary`2<System.String,System.Reflection.PropertyInfo>,System.Boolean,System.String[])
 FNDA:55,System.Collections.Generic.Dictionary`2<System.String,System.Reflection.PropertyInfo> TinyCMS.Serializer.Helper::FilterExcluded(System.Collections.Generic.Dictionary`2<System.String,System.Reflection.PropertyInfo>,System.Boolean,System.String[])
 DA:23,55
 DA:24,55
-DA:25,965
-DA:26,400
-DA:27,400
-DA:28,400
-DA:29,396
+DA:25,962
+DA:26,399
+DA:27,399
+DA:28,399
+DA:29,395
 DA:30,400
 DA:31,0
-DA:32,400
+DA:32,399
 DA:33,160
-DA:34,400
+DA:34,398
 DA:35,55
 DA:36,55
 BRDA:25,143,1,400
@@ -448,7 +459,7 @@ BRDA:31,80,0,0
 BRDA:31,80,1,0
 BRDA:30,77,1,400
 BRDA:32,112,0,160
-BRDA:32,112,1,400
+BRDA:32,112,1,398
 BRDA:25,143,0,55
 FN:38,System.Collections.Generic.Dictionary`2<System.String,System.Object> TinyCMS.Serializer.Helper::GetPropertyDictionary(System.Object,System.String[])
 FNDA:55,System.Collections.Generic.Dictionary`2<System.String,System.Object> TinyCMS.Serializer.Helper::GetPropertyDictionary(System.Object,System.String[])
@@ -479,12 +490,12 @@ DA:58,51
 DA:60,4
 DA:61,4
 DA:62,4
-DA:63,30
-DA:65,64
-DA:66,26
-DA:67,26
-DA:68,26
-DA:69,26
+DA:63,28
+DA:65,61
+DA:66,24
+DA:67,24
+DA:68,25
+DA:69,24
 DA:71,4
 DA:72,4
 DA:74,55
@@ -493,7 +504,7 @@ BRDA:57,23,0,51
 BRDA:57,23,1,4
 BRDA:63,71,0,1
 BRDA:63,71,1,4
-BRDA:65,158,1,26
+BRDA:65,158,1,24
 BRDA:65,158,0,4
 FN:16,System.Void TinyCMS.Serializer.Helper::.cctor()
 FNDA:1,System.Void TinyCMS.Serializer.Helper::.cctor()
@@ -883,11 +894,11 @@ DA:33,0
 DA:34,0
 DA:35,0
 DA:36,0
-DA:38,0
 DA:39,0
 DA:40,0
 DA:41,0
 DA:42,0
+DA:43,0
 BRDA:17,7,0,0
 BRDA:17,7,1,0
 BRDA:21,215,1,0
@@ -900,35 +911,35 @@ BRDA:29,161,0,0
 BRDA:29,161,1,0
 BRDA:25,140,1,0
 BRDA:21,215,0,0
-FN:47,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode,TinyCMS.Interfaces.INode)
+FN:48,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode,TinyCMS.Interfaces.INode)
 FNDA:16,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode,TinyCMS.Interfaces.INode)
-DA:48,16
 DA:49,16
-DA:50,1
-DA:51,16
-DA:52,4
+DA:50,16
+DA:51,1
+DA:52,16
 DA:53,4
 DA:54,4
-DA:55,16
+DA:55,4
 DA:56,16
 DA:57,16
 DA:58,16
-BRDA:49,12,0,1
-BRDA:49,12,1,16
-BRDA:51,39,0,4
-BRDA:51,39,1,16
-FN:60,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode)
+DA:59,16
+BRDA:50,12,0,1
+BRDA:50,12,1,16
+BRDA:52,39,0,4
+BRDA:52,39,1,16
+FN:61,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode)
 FNDA:1,TinyCMS.Interfaces.INode TinyCMS.Data.Extensions.NodeExtensions::Add(TinyCMS.Interfaces.INode)
-DA:61,1
 DA:62,1
 DA:63,1
 DA:64,1
 DA:65,1
-FN:67,System.Boolean TinyCMS.Data.Extensions.NodeExtensions::HasChildren(TinyCMS.Interfaces.INode)
+DA:66,1
+FN:68,System.Boolean TinyCMS.Data.Extensions.NodeExtensions::HasChildren(TinyCMS.Interfaces.INode)
 FNDA:40,System.Boolean TinyCMS.Data.Extensions.NodeExtensions::HasChildren(TinyCMS.Interfaces.INode)
-DA:68,40
-BRDA:68,7,0,0
-BRDA:68,7,1,40
+DA:69,40
+BRDA:69,7,0,0
+BRDA:69,7,1,40
 LF:42
 LH:17
 BRF:18
@@ -1113,14 +1124,14 @@ FNH:13
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Data/Builder/InterfaceResolverFactory.cs
 FN:12,TinyCMS.Data.Builder.InterfaceResolver TinyCMS.Data.Builder.InterfaceResolver::get_Instance()
-FNDA:1334,TinyCMS.Data.Builder.InterfaceResolver TinyCMS.Data.Builder.InterfaceResolver::get_Instance()
-DA:13,1334
-DA:14,1334
+FNDA:1352,TinyCMS.Data.Builder.InterfaceResolver TinyCMS.Data.Builder.InterfaceResolver::get_Instance()
+DA:13,1352
+DA:14,1352
 DA:15,1
-DA:16,1334
-DA:17,1334
+DA:16,1352
+DA:17,1352
 BRDA:14,11,0,1
-BRDA:14,11,1,1334
+BRDA:14,11,1,1352
 FN:23,System.Void TinyCMS.Data.Builder.InterfaceResolver::Add(System.Type,System.Type)
 FNDA:1,System.Void TinyCMS.Data.Builder.InterfaceResolver::Add(System.Type,System.Type)
 DA:24,1
@@ -1135,10 +1146,10 @@ DA:30,1
 DA:31,1
 DA:32,1
 FN:34,System.Boolean TinyCMS.Data.Builder.InterfaceResolver::CanResolve(System.Type)
-FNDA:1333,System.Boolean TinyCMS.Data.Builder.InterfaceResolver::CanResolve(System.Type)
-DA:35,1333
-DA:36,1333
-DA:37,1333
+FNDA:1351,System.Boolean TinyCMS.Data.Builder.InterfaceResolver::CanResolve(System.Type)
+DA:35,1351
+DA:36,1351
+DA:37,1351
 FN:39,System.Object TinyCMS.Data.Builder.InterfaceResolver::CreateInstance(System.Type)
 FNDA:0,System.Object TinyCMS.Data.Builder.InterfaceResolver::CreateInstance(System.Type)
 DA:40,0
@@ -1406,85 +1417,75 @@ FNF:1
 FNH:0
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Base/ServiceCollectionExtensions.cs
-FN:19,Newtonsoft.Json.JsonSerializerSettings TinyCMS.Base.JsonSerializerSettingsExtensions::ConfigureCmsSettings(Newtonsoft.Json.JsonSerializerSettings,TinyCMS.Interfaces.INodeTypeFactory)
-FNDA:7,Newtonsoft.Json.JsonSerializerSettings TinyCMS.Base.JsonSerializerSettingsExtensions::ConfigureCmsSettings(Newtonsoft.Json.JsonSerializerSettings,TinyCMS.Interfaces.INodeTypeFactory)
-DA:20,7
-DA:21,7
-DA:22,7
-DA:23,7
-DA:24,7
-DA:25,7
-DA:26,7
-DA:27,7
-FN:32,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action`1<TinyCMS.Base.TinyCmsOptions>)
+FN:19,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action`1<TinyCMS.Base.TinyCmsOptions>)
 FNDA:1,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action`1<TinyCMS.Base.TinyCmsOptions>)
-DA:33,1
-DA:34,1
-DA:35,1
-DA:36,1
-DA:38,1
-FN:40,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Options.IOptions`1<TinyCMS.Base.TinyCmsOptions>)
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+DA:25,1
+FN:27,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Options.IOptions`1<TinyCMS.Base.TinyCmsOptions>)
 FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddCMSConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Options.IOptions`1<TinyCMS.Base.TinyCmsOptions>)
-DA:41,0
-DA:42,0
-DA:43,0
-DA:45,0
-FN:47,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddSingletonMapped(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)
+DA:28,0
+DA:29,0
+DA:30,0
+DA:32,0
+FN:34,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddSingletonMapped(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)
 FNDA:0,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::AddSingletonMapped(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)
-DA:48,0
-DA:49,0
-DA:50,0
-FN:52,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::Setup(Microsoft.Extensions.DependencyInjection.IServiceCollection,TinyCMS.Base.TinyCmsOptions)
+DA:35,0
+DA:36,0
+DA:37,0
+FN:39,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::Setup(Microsoft.Extensions.DependencyInjection.IServiceCollection,TinyCMS.Base.TinyCmsOptions)
 FNDA:1,Microsoft.Extensions.DependencyInjection.IServiceCollection TinyCMS.Base.ServiceCollectionExtensions::Setup(Microsoft.Extensions.DependencyInjection.IServiceCollection,TinyCMS.Base.TinyCmsOptions)
-DA:53,1
-DA:54,1
-DA:56,1
+DA:40,1
+DA:41,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,1
+DA:49,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,2
+DA:54,2
+DA:55,2
 DA:57,1
 DA:58,1
 DA:59,1
-DA:60,1
-DA:61,1
-DA:62,1
-DA:63,1
+DA:60,2
+DA:61,2
+DA:62,2
+DA:63,2
 DA:64,1
-DA:65,1
+DA:65,2
 DA:66,2
 DA:67,2
 DA:68,2
-DA:70,1
-DA:71,1
-DA:72,1
+DA:69,2
+DA:70,2
+DA:71,2
+DA:72,2
 DA:73,2
 DA:74,2
 DA:75,2
-DA:76,2
+DA:76,1
 DA:77,1
-DA:78,2
-DA:79,2
-DA:80,2
-DA:81,2
-DA:82,2
-DA:83,2
-DA:84,2
-DA:85,2
-DA:86,2
-DA:87,2
-DA:88,2
-DA:89,1
-DA:90,1
-DA:91,1
-BRDA:56,190,0,1
-BRDA:56,190,1,1
-BRDA:70,234,0,1
-BRDA:72,244,0,1
-BRDA:72,244,1,1
-BRDA:70,234,1,1
-LF:57
-LH:50
+DA:78,1
+BRDA:43,190,0,1
+BRDA:43,190,1,1
+BRDA:57,234,0,1
+BRDA:59,244,0,1
+BRDA:59,244,1,1
+BRDA:57,234,1,1
+LF:49
+LH:42
 BRF:6
 BRH:6
-FNF:5
-FNH:3
+FNF:4
+FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Base/TinyCmsOptions.cs
 FN:14,System.Reflection.Assembly TinyCMS.Base.TinyCmsOptions::GetAssembly(System.Type)
@@ -1537,17 +1538,17 @@ FN:51,System.Type TinyCMS.Base.TinyCmsOptions::get_TokenValidator()
 FNDA:2,System.Type TinyCMS.Base.TinyCmsOptions::get_TokenValidator()
 DA:52,2
 FN:57,TinyCMS.Interfaces.INodeTypeFactory TinyCMS.Base.TinyCmsOptions::get_NodeFactoryInstance()
-FNDA:8,TinyCMS.Interfaces.INodeTypeFactory TinyCMS.Base.TinyCmsOptions::get_NodeFactoryInstance()
-DA:58,8
-DA:59,8
+FNDA:9,TinyCMS.Interfaces.INodeTypeFactory TinyCMS.Base.TinyCmsOptions::get_NodeFactoryInstance()
+DA:58,9
+DA:59,9
 DA:60,1
 DA:61,1
 DA:62,1
 DA:63,1
-DA:64,8
-DA:65,8
+DA:64,9
+DA:65,9
 BRDA:59,12,0,1
-BRDA:59,12,1,8
+BRDA:59,12,1,9
 FN:67,TinyCMS.Security.IJWTSettings TinyCMS.Base.TinyCmsOptions::get_JWTSettings()
 FNDA:4,TinyCMS.Security.IJWTSettings TinyCMS.Base.TinyCmsOptions::get_JWTSettings()
 DA:68,4
@@ -2271,14 +2272,14 @@ FNH:1
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Interfaces/Attributes/EditorTypeAttribute.cs
 FN:11,System.String TinyCMS.Data.EditorTypeAttribute::get_Editor()
-FNDA:4,System.String TinyCMS.Data.EditorTypeAttribute::get_Editor()
-DA:12,4
+FNDA:1,System.String TinyCMS.Data.EditorTypeAttribute::get_Editor()
+DA:12,1
 FN:6,System.Void TinyCMS.Data.EditorTypeAttribute::.ctor(System.String)
-FNDA:4,System.Void TinyCMS.Data.EditorTypeAttribute::.ctor(System.String)
-DA:7,4
-DA:8,4
-DA:9,4
-DA:10,4
+FNDA:1,System.Void TinyCMS.Data.EditorTypeAttribute::.ctor(System.String)
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
 LF:5
 LH:5
 BRF:0
@@ -2288,42 +2289,42 @@ FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Interfaces/Attributes/SchemaTypeAttribute.cs
 FN:13,System.String TinyCMS.Data.SchemaTypeAttribute::get_Schema()
-FNDA:2,System.String TinyCMS.Data.SchemaTypeAttribute::get_Schema()
-DA:14,2
+FNDA:6,System.String TinyCMS.Data.SchemaTypeAttribute::get_Schema()
+DA:14,6
 FN:8,System.Void TinyCMS.Data.SchemaTypeAttribute::.ctor(System.String,System.Boolean)
-FNDA:1,System.Void TinyCMS.Data.SchemaTypeAttribute::.ctor(System.String,System.Boolean)
-DA:9,1
-DA:10,1
-DA:11,1
-DA:12,1
-BRDA:11,10,0,1
-BRDA:11,10,1,0
+FNDA:3,System.Void TinyCMS.Data.SchemaTypeAttribute::.ctor(System.String,System.Boolean)
+DA:9,3
+DA:10,3
+DA:11,3
+DA:12,3
+BRDA:11,10,0,2
+BRDA:11,10,1,1
 LF:5
 LH:5
 BRF:2
-BRH:1
+BRH:2
 FNF:2
 FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.NodeSerializer/JsonStreamWriter.cs
 FN:17,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKeyAndValue(System.String,System.Object)
-FNDA:225,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKeyAndValue(System.String,System.Object)
-DA:18,225
-DA:19,225
-DA:20,225
-DA:21,225
+FNDA:221,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKeyAndValue(System.String,System.Object)
+DA:18,221
+DA:19,221
+DA:20,221
+DA:21,221
 FN:23,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKey(System.String)
-FNDA:251,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKey(System.String)
-DA:24,251
-DA:25,251
-DA:26,251
-DA:27,251
+FNDA:247,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteKey(System.String)
+DA:24,247
+DA:25,247
+DA:26,247
+DA:27,247
 FN:34,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteValue(System.Object)
-FNDA:254,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteValue(System.Object)
-DA:35,254
-DA:36,254
-DA:39,155
-DA:40,155
+FNDA:250,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteValue(System.Object)
+DA:35,250
+DA:36,250
+DA:39,151
+DA:40,151
 DA:42,13
 DA:43,13
 DA:45,13
@@ -2342,8 +2343,8 @@ DA:63,3
 DA:64,3
 DA:66,15
 DA:67,15
-DA:69,254
-BRDA:36,8,1,254
+DA:69,250
+BRDA:36,8,1,250
 BRDA:36,23,1,99
 BRDA:36,39,0,13
 BRDA:36,39,1,86
@@ -2357,28 +2358,28 @@ BRDA:36,128,1,32
 BRDA:36,153,0,13
 BRDA:36,153,1,19
 BRDA:36,178,1,18
-BRDA:36,23,0,155
+BRDA:36,23,0,151
 BRDA:36,87,0,13
 BRDA:36,178,0,1
 BRDA:36,194,0,3
 BRDA:36,8,0,15
 BRDA:36,194,1,15
 FN:71,System.String TinyCMS.Serializer.JsonStreamWriter::EscapeString(System.String)
-FNDA:155,System.String TinyCMS.Serializer.JsonStreamWriter::EscapeString(System.String)
-DA:72,155
-DA:73,155
-DA:74,155
-DA:75,155
-DA:76,155
-DA:77,155
-DA:78,155
+FNDA:151,System.String TinyCMS.Serializer.JsonStreamWriter::EscapeString(System.String)
+DA:72,151
+DA:73,151
+DA:74,151
+DA:75,151
+DA:76,151
+DA:77,151
+DA:78,151
 FN:80,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteString(System.String)
-FNDA:419,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteString(System.String)
-DA:81,419
-DA:82,419
-DA:83,419
-DA:84,419
-DA:85,419
+FNDA:411,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteString(System.String)
+DA:81,411
+DA:82,411
+DA:83,411
+DA:84,411
+DA:85,411
 FN:86,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteBool(System.Boolean)
 FNDA:13,System.Void TinyCMS.Serializer.JsonStreamWriter::WriteBool(System.Boolean)
 DA:87,13
@@ -2442,8 +2443,8 @@ DA:128,16
 DA:129,16
 DA:130,16
 FN:14,System.Void TinyCMS.Serializer.JsonStreamWriter::.ctor(System.IO.Stream)
-FNDA:81,System.Void TinyCMS.Serializer.JsonStreamWriter::.ctor(System.IO.Stream)
-DA:15,81
+FNDA:87,System.Void TinyCMS.Serializer.JsonStreamWriter::.ctor(System.IO.Stream)
+DA:15,87
 LF:78
 LH:78
 BRF:26
@@ -2578,12 +2579,12 @@ FNH:6
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.NodeSerializer/SchemaSerializer.cs
 FN:17,System.Void TinyCMS.Serializer.SchemaSerializer::StreamSchema(System.Type,System.IO.Stream)
-FNDA:5,System.Void TinyCMS.Serializer.SchemaSerializer::StreamSchema(System.Type,System.IO.Stream)
-DA:18,5
-DA:19,5
-DA:20,5
-DA:21,5
-DA:22,5
+FNDA:7,System.Void TinyCMS.Serializer.SchemaSerializer::StreamSchema(System.Type,System.IO.Stream)
+DA:18,7
+DA:19,7
+DA:20,7
+DA:21,7
+DA:22,7
 FN:24,System.Void TinyCMS.Serializer.SchemaSerializer::StreamTypes(System.IO.Stream,System.Collections.Generic.IEnumerable`1<System.String>)
 FNDA:1,System.Void TinyCMS.Serializer.SchemaSerializer::StreamTypes(System.IO.Stream,System.Collections.Generic.IEnumerable`1<System.String>)
 DA:25,1
@@ -2599,74 +2600,74 @@ FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.NodeSerializer/SchemaStreamWriter.cs
 FN:20,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchema(System.Type)
-FNDA:5,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchema(System.Type)
-DA:21,5
-DA:22,5
-DA:23,5
-DA:24,5
-DA:25,4
-DA:26,4
-DA:27,4
-DA:28,4
-DA:29,5
-DA:30,5
-DA:31,5
-DA:32,5
-DA:33,5
-DA:34,5
-DA:35,5
-DA:36,5
-DA:37,5
-BRDA:24,76,0,4
-BRDA:24,76,1,5
+FNDA:7,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchema(System.Type)
+DA:21,7
+DA:22,7
+DA:23,7
+DA:24,7
+DA:25,1
+DA:26,1
+DA:27,1
+DA:28,1
+DA:29,7
+DA:30,7
+DA:31,7
+DA:32,7
+DA:33,7
+DA:34,7
+DA:35,7
+DA:36,7
+DA:37,7
+BRDA:24,76,0,1
+BRDA:24,76,1,7
 FN:39,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchemaProperties(System.Type)
-FNDA:5,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchemaProperties(System.Type)
-DA:40,5
-DA:41,5
+FNDA:7,System.Void TinyCMS.Serializer.SchemaStreamWriter::WriteSchemaProperties(System.Type)
+DA:40,7
+DA:41,7
 DA:42,42
-DA:43,9
-DA:44,9
-DA:45,4
-DA:46,4
-DA:47,4
-DA:48,9
-DA:49,9
-DA:50,9
-DA:51,9
-DA:53,9
-DA:54,4
-DA:55,4
-DA:56,4
-DA:57,4
-DA:58,9
-DA:59,9
-DA:60,9
-DA:61,5
+DA:43,7
+DA:44,7
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,7
+DA:49,7
+DA:50,7
+DA:51,7
+DA:53,7
+DA:54,1
+DA:55,1
+DA:56,1
+DA:57,1
+DA:58,7
+DA:59,7
+DA:60,7
+DA:61,7
 BRDA:42,16,0,1
-BRDA:42,16,1,5
-BRDA:42,216,1,9
-BRDA:44,73,0,4
-BRDA:44,73,1,9
-BRDA:53,166,0,4
-BRDA:53,166,1,9
-BRDA:42,216,0,5
+BRDA:42,16,1,7
+BRDA:42,216,1,7
+BRDA:44,73,0,1
+BRDA:44,73,1,7
+BRDA:53,166,0,1
+BRDA:53,166,1,7
+BRDA:42,216,0,7
 FN:66,System.Tuple`2<System.String,System.String> TinyCMS.Serializer.SchemaStreamWriter::GetTypeName(System.Reflection.PropertyInfo)
-FNDA:9,System.Tuple`2<System.String,System.String> TinyCMS.Serializer.SchemaStreamWriter::GetTypeName(System.Reflection.PropertyInfo)
-DA:67,9
-DA:68,9
-DA:69,9
-DA:70,9
-DA:71,1
-DA:72,1
-DA:73,1
-DA:74,1
-DA:75,9
-DA:76,9
-BRDA:70,47,0,1
-BRDA:70,47,1,9
+FNDA:7,System.Tuple`2<System.String,System.String> TinyCMS.Serializer.SchemaStreamWriter::GetTypeName(System.Reflection.PropertyInfo)
+DA:67,7
+DA:68,7
+DA:69,7
+DA:70,7
+DA:71,3
+DA:72,3
+DA:73,3
+DA:74,3
+DA:75,7
+DA:76,7
+BRDA:70,47,0,3
+BRDA:70,47,1,7
 FN:17,System.Void TinyCMS.Serializer.SchemaStreamWriter::.ctor(System.IO.Stream)
-FNDA:15,System.Void TinyCMS.Serializer.SchemaStreamWriter::.ctor(System.IO.Stream)
-DA:18,15
+FNDA:21,System.Void TinyCMS.Serializer.SchemaStreamWriter::.ctor(System.IO.Stream)
+DA:18,21
 FN:62,System.Void TinyCMS.Serializer.SchemaStreamWriter::.cctor()
 FNDA:1,System.Void TinyCMS.Serializer.SchemaStreamWriter::.cctor()
 DA:63,1
@@ -2922,15 +2923,15 @@ FNH:0
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/SocketNodeServer.cs
 FN:20,System.Void TinyCMS.SocketNodeServer::.ctor(TinyCMS.Interfaces.IContainer,TinyCMS.Interfaces.INodeTypeFactory,TinyCMS.Interfaces.INodeSerializer,TinyCMS.Base.Security.ITokenDecoder)
-FNDA:2,System.Void TinyCMS.SocketNodeServer::.ctor(TinyCMS.Interfaces.IContainer,TinyCMS.Interfaces.INodeTypeFactory,TinyCMS.Interfaces.INodeSerializer,TinyCMS.Base.Security.ITokenDecoder)
-DA:21,2
-DA:23,2
-DA:24,2
-DA:25,2
-DA:26,2
-DA:27,2
-DA:28,2
-DA:29,2
+FNDA:1,System.Void TinyCMS.SocketNodeServer::.ctor(TinyCMS.Interfaces.IContainer,TinyCMS.Interfaces.INodeTypeFactory,TinyCMS.Interfaces.INodeSerializer,TinyCMS.Base.Security.ITokenDecoder)
+DA:21,1
+DA:23,1
+DA:24,1
+DA:25,1
+DA:26,1
+DA:27,1
+DA:28,1
+DA:29,1
 FN:31,System.Void TinyCMS.SocketNodeServer/<HandleNodeRequest>d__6::MoveNext()
 FNDA:0,System.Void TinyCMS.SocketNodeServer/<HandleNodeRequest>d__6::MoveNext()
 DA:32,0
@@ -3065,45 +3066,55 @@ SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/Extensions/Appl
 FN:19,System.Void TinyCMS.SocketServer.SocketServerApplicationBuilderExtensions::UseSocketServer(Microsoft.AspNetCore.Builder.IApplicationBuilder)
 FNDA:2,System.Void TinyCMS.SocketServer.SocketServerApplicationBuilderExtensions::UseSocketServer(Microsoft.AspNetCore.Builder.IApplicationBuilder)
 DA:20,2
-DA:22,2
-DA:23,2
-DA:24,2
-DA:25,2
-DA:26,2
-DA:27,2
-DA:29,2
-DA:31,2
-DA:32,2
-DA:33,2
-DA:34,2
-DA:36,2
-DA:37,2
-DA:38,4
-DA:39,4
-DA:40,2
-DA:41,2
-DA:42,2
-DA:43,2
-DA:44,2
-DA:45,2
-DA:46,2
-DA:47,2
-DA:48,2
-DA:49,2
-DA:50,2
-DA:51,2
-DA:52,4
-DA:53,4
-DA:54,4
-DA:55,2
-DA:56,4
-DA:57,2
-LF:34
-LH:34
-BRF:14
-BRH:3
-FNF:1
-FNH:1
+DA:21,2
+DA:23,1
+DA:24,1
+DA:25,1
+DA:26,1
+DA:27,1
+DA:28,1
+DA:30,1
+DA:32,1
+DA:33,1
+DA:34,1
+DA:35,1
+DA:37,1
+DA:38,1
+DA:39,3
+DA:40,3
+DA:41,1
+DA:42,1
+DA:43,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,1
+DA:49,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,3
+DA:54,3
+DA:55,3
+DA:56,1
+DA:57,3
+DA:58,1
+FN:60,System.Void TinyCMS.SocketServer.SocketServerApplicationBuilderExtensions::VerifyTinyCmsIsRegistered(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+FNDA:2,System.Void TinyCMS.SocketServer.SocketServerApplicationBuilderExtensions::VerifyTinyCmsIsRegistered(Microsoft.AspNetCore.Builder.IApplicationBuilder)
+DA:61,2
+DA:63,2
+DA:64,1
+DA:65,1
+DA:67,1
+BRDA:63,27,0,1
+BRDA:63,27,1,1
+LF:40
+LH:40
+BRF:16
+BRH:5
+FNF:2
+FNH:2
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.SocketServer/Extensions/ContainerExtensions.cs
 FN:8,TinyCMS.Interfaces.INode TinyCMS.SocketServer.ContainerExtensions::MatchRequest(TinyCMS.Interfaces.IContainer,TinyCMS.Interfaces.INodeRequest,TinyCMS.Interfaces.INodeTypeFactory)
@@ -3715,14 +3726,14 @@ FNF:5
 FNH:0
 end_of_record
 SF:/Users/johannystrom/practice/TinyCMS/src/TinyCMS.Node.ResizeImage/ResizeImage.cs
-FN:10,System.String TinyCMS.Node.ResizeImage.ResizImage::get_Type()
-FNDA:1,System.String TinyCMS.Node.ResizeImage.ResizImage::get_Type()
+FN:10,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_Type()
+FNDA:1,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_Type()
 DA:11,1
-FN:15,System.String TinyCMS.Node.ResizeImage.ResizImage::get_SourceUrl()
-FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizImage::get_SourceUrl()
+FN:15,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_SourceUrl()
+FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_SourceUrl()
 DA:16,0
-FN:17,System.Void TinyCMS.Node.ResizeImage.ResizImage::set_SourceUrl(System.String)
-FNDA:0,System.Void TinyCMS.Node.ResizeImage.ResizImage::set_SourceUrl(System.String)
+FN:17,System.Void TinyCMS.Node.ResizeImage.ResizeImage::set_SourceUrl(System.String)
+FNDA:0,System.Void TinyCMS.Node.ResizeImage.ResizeImage::set_SourceUrl(System.String)
 DA:18,0
 DA:19,0
 DA:20,0
@@ -3737,8 +3748,8 @@ BRDA:19,15,0,0
 BRDA:22,47,0,0
 BRDA:19,15,1,0
 BRDA:22,47,1,0
-FN:30,System.Void TinyCMS.Node.ResizeImage.ResizImage::FetchDownloadUrl()
-FNDA:0,System.Void TinyCMS.Node.ResizeImage.ResizImage::FetchDownloadUrl()
+FN:30,System.Void TinyCMS.Node.ResizeImage.ResizeImage::FetchDownloadUrl()
+FNDA:0,System.Void TinyCMS.Node.ResizeImage.ResizeImage::FetchDownloadUrl()
 DA:31,0
 DA:32,0
 DA:33,0
@@ -3746,17 +3757,17 @@ DA:34,0
 DA:35,0
 DA:36,0
 DA:37,0
-FN:39,System.String TinyCMS.Node.ResizeImage.ResizImage::get_DownloadUrl()
-FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizImage::get_DownloadUrl()
+FN:39,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_DownloadUrl()
+FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_DownloadUrl()
 DA:40,0
-FN:40,System.Double TinyCMS.Node.ResizeImage.ResizImage::get_Width()
-FNDA:0,System.Double TinyCMS.Node.ResizeImage.ResizImage::get_Width()
+FN:40,System.Double TinyCMS.Node.ResizeImage.ResizeImage::get_Width()
+FNDA:0,System.Double TinyCMS.Node.ResizeImage.ResizeImage::get_Width()
 DA:41,0
-FN:41,System.Double TinyCMS.Node.ResizeImage.ResizImage::get_Height()
-FNDA:0,System.Double TinyCMS.Node.ResizeImage.ResizImage::get_Height()
+FN:41,System.Double TinyCMS.Node.ResizeImage.ResizeImage::get_Height()
+FNDA:0,System.Double TinyCMS.Node.ResizeImage.ResizeImage::get_Height()
 DA:42,0
-FN:42,System.String TinyCMS.Node.ResizeImage.ResizImage::get_Alt()
-FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizImage::get_Alt()
+FN:42,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_Alt()
+FNDA:0,System.String TinyCMS.Node.ResizeImage.ResizeImage::get_Alt()
 DA:43,0
 LF:23
 LH:1

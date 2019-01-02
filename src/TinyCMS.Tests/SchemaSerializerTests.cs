@@ -25,22 +25,6 @@ namespace TinyCMS.Tests
 {
     public class SchemaSerializerTests
     {
-        [Description("included-class-description")]
-        private class TypeWithProperties
-        {
-            public int Foo { get; set; }
-
-            [EditorType("included-editor-type-property")]
-
-            [Description("not-included-property-description")]
-            public string Bar { get; set; }
-        }
-
-        private class WithSchemaAttribute
-        {
-            [SchemaType("included-schema-type-property")]
-            public int Foo { get; set; }
-        }
 
         private class Schema
         {
@@ -59,22 +43,27 @@ namespace TinyCMS.Tests
             }
         }
 
+        private class SimpleType
+        {
+            public string foo { get; set; }
+            public string bar { get; set; }
+        }
+
         [Fact]
-        public void includes_properties_of_given_type()
+        public void includes_properties_of_a_type()
         {
             // Arrange
-            var expected = new Dictionary<string, PropertyType>
-                {
-                    ["foo"] = new PropertyType("int32"),
-                    ["bar"] = new PropertyType("string")
-                };
+            // no op
 
             // Act
-            var result = GetSchema<TypeWithProperties>().ToJson<Schema>();
+            var result = GetSchema<SimpleType>().ToJson<Schema>();
 
             // Assert
             result.properties.Should().ContainKeys("foo", "bar");
         }
+
+        [Description("included-class-description")]
+        private class TypeWithDescriptionAttribute { }
 
         [Fact]
         public void includes_description_attribute_on_types()
@@ -83,10 +72,16 @@ namespace TinyCMS.Tests
             // no op
 
             // Act
-            var result = GetSchema<TypeWithProperties>();
+            var result = GetSchema<TypeWithDescriptionAttribute>();
 
             // Assert
             result.Should().Contain("included-class-description");
+        }
+
+        private class TypeWithDescriptionOnProperty
+        {
+            [Description("not-included-property-description")]
+            public string foo { get; set; }
         }
 
         [Fact]
@@ -96,10 +91,18 @@ namespace TinyCMS.Tests
             // no op
 
             // Act
-            var result = GetSchema<TypeWithProperties>();
+            var result = GetSchema<TypeWithDescriptionOnProperty>();
 
             // Assert
             result.Should().NotContain("not-included-property-description");
+        }
+
+        private class TypeWithEditorTypeOnProperty
+        {
+
+            [EditorType("included-editor-type-property")]
+
+            public string AnyProperty { get; set; }
         }
 
         [Fact]
@@ -109,10 +112,16 @@ namespace TinyCMS.Tests
             // no op
 
             // Act
-            var result = GetSchema<TypeWithProperties>();
+            var result = GetSchema<TypeWithEditorTypeOnProperty>();
 
             // Assert
             result.Should().Contain("included-editor-type-property");
+        }
+
+        private class WithSchemaAttribute
+        {
+            [SchemaType("included-schema-type-property", false)]
+            public int Foo { get; set; }
         }
 
         [Fact]
@@ -128,6 +137,38 @@ namespace TinyCMS.Tests
             result.Should().Contain("included-schema-type-property");
         }
 
+        [Fact]
+        public void schema_type_attribute_not_a_URI_will_be_prefixed()
+        {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<WithSchemaAttribute>();
+
+            // Assert
+            result.Should().Contain("$ref\":\"" + SchemaTypeAttribute.SCHEMA_PREFIX);
+        }
+
+        private class WithSchemaAttributeAsURI
+        {
+            [SchemaType("included-schema-type-property", true)]
+            public int Foo { get; set; }
+        }
+
+        [Fact]
+        public void schema_type_attribute_with_a_URI_will_not_be_prefixed()
+        {
+            // Arrange
+            // no op
+
+            // Act
+            var result = GetSchema<WithSchemaAttributeAsURI>();
+
+            // Assert
+            result.Should().NotContain("$ref\":\"" + SchemaTypeAttribute.SCHEMA_PREFIX);
+        }
+
         private string GetSchema<T>()
         {
             var serializer = new SchemaSerializer();
@@ -138,5 +179,4 @@ namespace TinyCMS.Tests
             return reader.ReadToEnd();
         }
     }
-
 }

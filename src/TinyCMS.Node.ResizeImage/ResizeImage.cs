@@ -1,11 +1,11 @@
 ﻿using System;
-using TinyCMS.Data;
 using System.ComponentModel;
+using TinyCMS.Data;
 
 namespace TinyCMS.Node.ResizeImage
 {
     [Serializable]
-    public class ResizImage : BaseNode, INotifyPropertyChanged
+    public class ResizeImage : BaseNode, INotifyPropertyChanged
     {
 
         public override string Type => "resizeimage";

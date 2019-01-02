@@ -14,19 +14,6 @@ using TinyCMS.Serializer;
 
 namespace TinyCMS.Base
 {
-    public static class JsonSerializerSettingsExtensions
-    {
-        public static JsonSerializerSettings ConfigureCmsSettings(this JsonSerializerSettings settings, INodeTypeFactory factory)
-        {
-            settings.NullValueHandling = NullValueHandling.Ignore;
-            settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            settings.Converters.Add(new JsonNodeConverter(factory));
-            settings.Converters.Add(new JsonMappedInterfaceConverter());
-            return settings;
-        }
-    }
-
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddCMSConfiguration(this IServiceCollection services, Action<TinyCmsOptions> options)

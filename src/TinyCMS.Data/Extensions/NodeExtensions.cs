@@ -34,6 +34,7 @@ namespace TinyCMS.Data.Extensions
                     }
                     catch (Exception)
                     {
+
                         // ignore
                     }
                 }

@@ -18,6 +18,7 @@ namespace TinyCMS.SocketServer
         /// <param name="app">The <see cref="IApplicationBuilder"/>.</param>
         public static void UseSocketServer(this IApplicationBuilder app)
         {
+            VerifyTinyCmsIsRegistered(app);
             // Using all defaults. Should this be set?
             var webSocketOptions = new WebSocketOptions()
             {
@@ -54,6 +55,15 @@ namespace TinyCMS.SocketServer
                 }
 
             });
+        }
+
+        private static void VerifyTinyCmsIsRegistered(IApplicationBuilder app)
+        {
+
+            if (app.ApplicationServices.GetService(typeof(IContainer)) == null)
+            {
+                throw new InvalidOperationException("TinyCMS was not registered.");
+            }
         }
     }
 }

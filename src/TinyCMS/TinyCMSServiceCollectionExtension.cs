@@ -1,10 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TinyCMS.Base;
 using TinyCMS.Commerce;
 using TinyCMS.Commerce.Models;
 using TinyCMS.Data.Builder;
+using TinyCMS.FileStorage;
 using TinyCMS.FileStorage.Storage;
+using TinyCMS.Interfaces;
 using TinyCMS.Node.ResizeImage;
 using TinyCMS.QuestionNodes;
 using TinyCMS.Security;
@@ -37,13 +40,24 @@ namespace TinyCMS
             {
                 settings.JWTSettings = new JWTSettings(secretKey);
                 settings.AddAssemblyWithNodes<Question>();
-                settings.AddAssemblyWithNodes<ResizImage>();
+                settings.AddAssemblyWithNodes<ResizeImage>();
                 settings.AddAssemblyWithNodes<Commerce.Nodes.Product>();
 
-                JsonConvert.DefaultSettings = (() => new JsonSerializerSettings().ConfigureCmsSettings(settings.NodeFactoryInstance));
+                JsonConvert.DefaultSettings = (() => ConfigureCmsSettings(settings.NodeFactoryInstance));
             });
 
             return services;
+        }
+
+        public static JsonSerializerSettings ConfigureCmsSettings(INodeTypeFactory factory)
+        {
+            var settings = new JsonSerializerSettings();
+            settings.NullValueHandling = NullValueHandling.Ignore;
+            settings.ObjectCreationHandling = ObjectCreationHandling.Replace;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            settings.Converters.Add(new JsonNodeConverter(factory));
+            settings.Converters.Add(new JsonMappedInterfaceConverter());
+            return settings;
         }
     }
 }
