@@ -7,7 +7,6 @@ using TinyCMS.Interfaces;
 
 namespace TinyCMS.Data.Builder
 {
-
     public class NodeTypeFactory : INodeTypeFactory
     {
         public NodeTypeFactory()

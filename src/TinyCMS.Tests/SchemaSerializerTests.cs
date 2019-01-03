@@ -17,7 +17,7 @@ namespace TinyCMS.Tests
             public string id = "http://tinycms.com/schema/typeWithProperties.schema.json";
             public string type = "object";
 
-            public Dictionary<string, dynamic> properties;
+            public Dictionary<string, dynamic> properties = null;
         }
 
         class SimpleType

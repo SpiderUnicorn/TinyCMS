@@ -19,6 +19,19 @@ namespace TinyCMS.SocketServer
         public static void UseTinyCms(this IApplicationBuilder app)
         {
             VerifyTinyCmsIsRegistered(app);
+            ConfigureSocketServer(app);
+        }
+
+        private static void VerifyTinyCmsIsRegistered(IApplicationBuilder app)
+        {
+            if (app.ApplicationServices.GetService(typeof(IContainer)) == null)
+                throw new InvalidOperationException(
+                    "TinyCMS was not registered"
+                );
+        }
+
+        private static void ConfigureSocketServer(IApplicationBuilder app)
+        {
             // Using all defaults. Should this be set?
             var webSocketOptions = new WebSocketOptions()
             {
@@ -28,7 +41,6 @@ namespace TinyCMS.SocketServer
             app.UseWebSockets(webSocketOptions);
 
             IServiceProvider services = app.ApplicationServices;
-
             var container = services.GetService(typeof(IContainer)) as IContainer;
             var nodeTypeFactory = services.GetService(typeof(INodeTypeFactory)) as INodeTypeFactory;
             var nodeSerializer = services.GetService(typeof(INodeSerializer)) as INodeSerializer;
@@ -53,17 +65,7 @@ namespace TinyCMS.SocketServer
                 {
                     await next();
                 }
-
             });
-        }
-
-        private static void VerifyTinyCmsIsRegistered(IApplicationBuilder app)
-        {
-
-            if (app.ApplicationServices.GetService(typeof(IContainer)) == null)
-            {
-                throw new InvalidOperationException("TinyCMS was not registered.");
-            }
         }
     }
 }
