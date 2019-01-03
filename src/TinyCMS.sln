@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyCMS.Tests", "TinyCMS.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyCMS.FileStorage", "TinyCMS.FileStorage\TinyCMS.FileStorage.csproj", "{8A19A1F6-6523-40BF-8E2B-C9975304B64D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyCMS.Static", "TinyCMS.Static\TinyCMS.Static.csproj", "{4E9A0542-1CC6-40CA-AF18-EFE2B10101CB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyCMS.NodeSerializer", "TinyCMS.NodeSerializer\TinyCMS.NodeSerializer.csproj", "{4F3966BB-3EA5-45F5-A627-F1918EE76793}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyCMS.Interfaces", "TinyCMS.Interfaces\TinyCMS.Interfaces.csproj", "{7D9068B2-6C63-4122-9D71-3F3CBC611A7F}"

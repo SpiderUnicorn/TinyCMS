@@ -1,20 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Text;
 using FluentAssertions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NSubstitute;
-using TinyCMS.Data;
 using TinyCMS.Data.Builder;
-using TinyCMS.Data.Extensions;
 using TinyCMS.Data.Nodes;
 using TinyCMS.FileStorage;
 using TinyCMS.Interfaces;
-using TinyCMS.SocketServer;
 using TinyCMS.Storage;
 using Xunit;
 
@@ -24,10 +16,10 @@ namespace TinyCMS.Tests
     {
         public class json_storage
         {
-            private readonly Container container;
-            private readonly JsonStorageService jsonStorage;
-            private readonly MemoryStream fileStream;
-            private readonly IFile savedFile;
+            readonly Container container;
+            readonly JsonStorageService jsonStorage;
+            readonly MemoryStream fileStream;
+            readonly IFile savedFile;
 
             // before each
             public json_storage()
@@ -74,7 +66,7 @@ namespace TinyCMS.Tests
 
         public class node_storage
         {
-            private readonly IStorageService fileStorageService;
+            readonly IStorageService fileStorageService;
 
             public node_storage()
             {

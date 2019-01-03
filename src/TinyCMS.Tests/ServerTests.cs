@@ -6,7 +6,7 @@ namespace TinyCMS.Tests
 {
     public class ServerTests : IClassFixture<WebApplicationFactory<Startup>>
         {
-            private readonly WebApplicationFactory<Startup> _factory;
+            readonly WebApplicationFactory<Startup> _factory;
 
             public ServerTests(WebApplicationFactory<Startup> factory)
             {

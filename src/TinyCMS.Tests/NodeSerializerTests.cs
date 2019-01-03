@@ -1,29 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 using System.Text;
 using FluentAssertions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using TinyCMS.Base.Security;
 using TinyCMS.Data;
 using TinyCMS.Data.Builder;
 using TinyCMS.Data.Extensions;
-using TinyCMS.Data.Nodes;
-using TinyCMS.FileStorage;
 using TinyCMS.Interfaces;
-using TinyCMS.Security;
 using TinyCMS.Serializer;
 using Xunit;
-using Xunit.Extensions;
 
 namespace TinyCMS.Tests
 {
     public class NodeSerializerTests
     {
-        private class TestNode : BaseNode
+        class TestNode : BaseNode
         {
             public override string Type => "TestNode";
 
@@ -35,12 +26,12 @@ namespace TinyCMS.Tests
 
         public class parsing_different_data_types
         {
-            private enum TestEnum
+            enum TestEnum
             {
                 A,
                 B
             }
-            private class TestDataTypesNode : BaseNode
+            class TestDataTypesNode : BaseNode
             {
                 public override string Type => "TestDataTypesNode";
 
@@ -59,7 +50,7 @@ namespace TinyCMS.Tests
                 public StubComplexType ComplexProp { get; set; }
             }
 
-            private class StubComplexType
+            class StubComplexType
             {
                 public int A { get; set; }
                 public string B { get; set; }

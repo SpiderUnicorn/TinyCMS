@@ -1,32 +1,18 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using FluentAssertions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using TinyCMS.Base.Security;
 using TinyCMS.Data;
-using TinyCMS.Data.Builder;
-using TinyCMS.Data.Extensions;
-using TinyCMS.Data.Nodes;
-using TinyCMS.FileStorage;
-using TinyCMS.Interfaces;
-using TinyCMS.Security;
 using TinyCMS.Serializer;
 using TinyCMS.Tests.Extensions;
 using Xunit;
-using Xunit.Extensions;
 
 namespace TinyCMS.Tests
 {
     public class SchemaSerializerTests
     {
 
-        private class Schema
+        class Schema
         {
             public string id = "http://tinycms.com/schema/typeWithProperties.schema.json";
             public string type = "object";
@@ -34,16 +20,7 @@ namespace TinyCMS.Tests
             public Dictionary<string, dynamic> properties;
         }
 
-        private struct PropertyType
-        {
-            private string type;
-            public PropertyType(string type)
-            {
-                this.type = type;
-            }
-        }
-
-        private class SimpleType
+        class SimpleType
         {
             public string foo { get; set; }
             public string bar { get; set; }
@@ -63,7 +40,7 @@ namespace TinyCMS.Tests
         }
 
         [Description("included-class-description")]
-        private class TypeWithDescriptionAttribute { }
+        class TypeWithDescriptionAttribute { }
 
         [Fact]
         public void includes_description_attribute_on_types()
@@ -78,7 +55,7 @@ namespace TinyCMS.Tests
             result.Should().Contain("included-class-description");
         }
 
-        private class TypeWithDescriptionOnProperty
+        class TypeWithDescriptionOnProperty
         {
             [Description("not-included-property-description")]
             public string foo { get; set; }
@@ -97,7 +74,7 @@ namespace TinyCMS.Tests
             result.Should().NotContain("not-included-property-description");
         }
 
-        private class TypeWithEditorTypeOnProperty
+        class TypeWithEditorTypeOnProperty
         {
 
             [EditorType("included-editor-type-property")]
@@ -118,7 +95,7 @@ namespace TinyCMS.Tests
             result.Should().Contain("included-editor-type-property");
         }
 
-        private class WithSchemaAttribute
+        class WithSchemaAttribute
         {
             [SchemaType("included-schema-type-property", false)]
             public int Foo { get; set; }
@@ -150,7 +127,7 @@ namespace TinyCMS.Tests
             result.Should().Contain("$ref\":\"" + SchemaTypeAttribute.SCHEMA_PREFIX);
         }
 
-        private class WithSchemaAttributeAsURI
+        class WithSchemaAttributeAsURI
         {
             [SchemaType("included-schema-type-property", true)]
             public int Foo { get; set; }
