@@ -24,7 +24,7 @@ namespace TinyCMS.Data.Builder
 
         public bool IsDirty { get; set; }
 
-        private void ParseNode(INode node, string parentId="")
+        private void ParseNode(INode node, string parentId = "")
         {
 
             if (node == null || string.IsNullOrEmpty(node.Id))
@@ -36,7 +36,7 @@ namespace TinyCMS.Data.Builder
                 if (!node.IsParsed)
                     throw new NotUniqueIdException(node.Id);
             }
-            else 
+            else
                 Nodes.Add(node.Id, node);
 
             if (node.Children != null)
@@ -56,10 +56,10 @@ namespace TinyCMS.Data.Builder
 
         }
 
-        [field:NonSerialized]
+        [field : NonSerialized]
         public event EventHandler<System.ComponentModel.PropertyChangedEventArgs> OnValueChanged;
 
-        [field: NonSerialized]
+        [field : NonSerialized]
         public event EventHandler<NotifyCollectionChangedEventArgs> OnChildrenChanged;
 
         private void AddWatchers(INode node)
@@ -75,7 +75,7 @@ namespace TinyCMS.Data.Builder
                 {
                     foreach (var item in e.NewItems.OfType<INode>())
                     {
-                        ParseNode(item,node.Id);
+                        ParseNode(item, node.Id);
                         IsDirty = true;
                     }
                 }

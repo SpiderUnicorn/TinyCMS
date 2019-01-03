@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TinyCMS.Storage;
 using System.Runtime.InteropServices.ComTypes;
+using TinyCMS.Storage;
 
 namespace TinyCMS.FileStorage.Storage
 {
@@ -36,11 +36,6 @@ namespace TinyCMS.FileStorage.Storage
         public IEnumerable<IDirectory> GetDirectories()
         {
             return directoryInfo.GetDirectories().Select((dir) => new Directory(this, dir));
-        }
-
-        public void UploadFile(IFile file)
-        {
-
         }
 
         public IFile GetFile(string fileName)
