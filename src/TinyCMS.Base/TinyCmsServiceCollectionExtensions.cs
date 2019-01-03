@@ -14,26 +14,22 @@ using TinyCMS.Serializer;
 
 namespace TinyCMS.Base
 {
+    /// <summary>
+    /// Extension methods for <see cref="IServiceCollection"/> to add register TinyCms services.
+    /// </summary>
     public static class TinyCmsServiceCollectionExtensions
     {
-        public static ITinyCmsBuilder AddTinyCMS(this IServiceCollection services, Action<TinyCmsOptions> options)
+        /// <summary>
+        /// Adds Tiny CMS to the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> services.</param>
+        /// <param name="configure"> An action for configuring services to register with <see cref="TinyCmsOptions" />.</param>
+        /// <returns>An <see cref="ITinyCmsBuilder" /> for adding more parts of TinyCms</returns>
+        public static ITinyCmsBuilder AddTinyCMS(this IServiceCollection services, Action<TinyCmsOptions> configure)
         {
             var settings = new TinyCmsOptions();
-            options.Invoke(settings);
+            configure(settings);
             return Setup(services, settings);
-
-        }
-
-        public static ITinyCmsBuilder AddTinyCMS(this IServiceCollection services, IOptions<TinyCmsOptions> options)
-        {
-            var settings = options.Value;
-            return Setup(services, settings);
-
-        }
-
-        private static IServiceCollection AddSingletonMapped<T>(this IServiceCollection services, Type type)
-        {
-            return services.AddSingleton(type);
         }
 
         private static ITinyCmsBuilder Setup(IServiceCollection services, TinyCmsOptions settings)

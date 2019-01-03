@@ -89,6 +89,7 @@ public class SocketConnectionHandler
         var buffer = new byte[1024 * 8];
         var result = await socket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
 
+        throw new ArgumentException(result.ToString());
         while (!result.CloseStatus.HasValue)
         {
             ArraySegment<byte> segment = null;

@@ -8,16 +8,19 @@ using TinyCMS.Data.Builder;
 
 namespace TinyCMS.Commerce
 {
+    /// <summary>
+    /// Extension methods for <see cref="ITinyCmsBuilder"/> to add TinyCms Commerce.
+    /// </summary>
     public static class TinyCmsCommerceServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds TiyCms Commerce to the <see cref="ITinyCmsBuilder" />.
+        /// </summary>
+        /// <param name="builder"></param>
         public static ITinyCmsBuilder AddCommerce(this ITinyCmsBuilder builder)
         {
             var settings = new TinyShopOptions();
-            return SetupCommerce(builder, settings);
-        }
 
-        private static ITinyCmsBuilder SetupCommerce(ITinyCmsBuilder builder, TinyShopOptions settings)
-        {
             InterfaceResolver.Instance.Add<IOrderArticle, OrderArticle>();
 
             builder.Services

@@ -5,8 +5,15 @@ using TinyCMS.Base;
 
 namespace TinyCMS.Security
 {
+    // <summary>
+    /// Extension method for <see cref="ITinyCmsBuilder"/> to register commerce dependencies for TinyCMS.
+    /// </summary>
     public static class AuthenticationServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds TiyCms JWT Authentication to the <see cref="ITinyCmsBuilder" />.
+        /// </summary>
+        /// <param name="builder"></param>
         public static ITinyCmsBuilder AddJwtAuthentication(this ITinyCmsBuilder builder, string key)
         {
             var settings = new JWTSettings(key);
@@ -30,6 +37,7 @@ namespace TinyCMS.Security
                         ValidateAudience = false
                     };
                 });
+
             return builder;
         }
     }

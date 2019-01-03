@@ -6,8 +6,15 @@ using TinyCMS.Storage;
 
 namespace TinyCMS.FileStorage.Storage
 {
+    // <summary>
+    /// Extension method for <see cref="ITinyCmsBuilder"/> to register file storage dependencies for TinyCMS.
+    /// </summary>
     public static class FileStorageServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds TiyCms File Storage to the <see cref="ITinyCmsBuilder" />.
+        /// </summary>
+        /// <param name="builder"></param>
         public static ITinyCmsBuilder AddFileStorage(this ITinyCmsBuilder builder)
         {
             var settings = new TinyCmsStorageOptions();
