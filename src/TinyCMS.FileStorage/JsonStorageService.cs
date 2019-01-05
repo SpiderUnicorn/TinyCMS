@@ -30,13 +30,12 @@ namespace TinyCMS.FileStorage
                     {
                         using(var jsonTextReader = new JsonTextReader(streamReader))
                         {
-                            return (T) serializer.Deserialize<T>(jsonTextReader);
+                            return serializer.Deserialize<T>(jsonTextReader);
                         }
                     }
                 }
             }
             return default(T);
-
         }
 
         public void SaveContainer(IContainer container, string fileName)
@@ -53,14 +52,7 @@ namespace TinyCMS.FileStorage
                 {
                     using(var jsonTextWriter = new JsonTextWriter(streamWriter))
                     {
-                        try
-                        {
-                            serializer.Serialize(jsonTextWriter, container);
-                        }
-                        catch (Exception)
-                        {
-                            // Ignore
-                        }
+                        serializer.Serialize(jsonTextWriter, container);
                     }
                 }
             }

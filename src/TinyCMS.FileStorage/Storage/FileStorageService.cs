@@ -1,16 +1,13 @@
 ﻿using System;
-using TinyCMS.Storage;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using TinyCMS.Storage;
 
 namespace TinyCMS.FileStorage.Storage
 {
     public class FileStorageService : IFileStorageService
     {
-        public FileStorageService(IHostingEnvironment hostingEnvironment)
-        {
-            RootDirectory = new Directory(null, new DirectoryInfo(hostingEnvironment.ContentRootPath));
-        }
+        public FileStorageService(IHostingEnvironment hostingEnvironment) : this(hostingEnvironment.ContentRootPath) { }
 
         public FileStorageService(string rootDir)
         {

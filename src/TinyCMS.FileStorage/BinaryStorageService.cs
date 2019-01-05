@@ -5,7 +5,6 @@ using TinyCMS.Storage;
 
 namespace TinyCMS.FileStorage
 {
-    /*
     public class BinaryStorageService : IStorageService
     {
         private readonly BinaryFormatter formatter;
@@ -40,5 +39,4 @@ namespace TinyCMS.FileStorage
             }
         }
     }
-    */
 }

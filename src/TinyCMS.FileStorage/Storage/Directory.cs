@@ -8,8 +8,6 @@ namespace TinyCMS.FileStorage.Storage
 {
     public class Directory : IDirectory
     {
-        public string Name { get; internal set; }
-
         public IDirectory Parent { get; internal set; }
 
         private DirectoryInfo _directoryInfo;
@@ -26,16 +24,6 @@ namespace TinyCMS.FileStorage.Storage
             {
                 return _directoryInfo;
             }
-        }
-
-        public IEnumerable<IFile> GetFiles()
-        {
-            return directoryInfo.GetFiles().Select((file) => new File(file, this));
-        }
-
-        public IEnumerable<IDirectory> GetDirectories()
-        {
-            return directoryInfo.GetDirectories().Select((dir) => new Directory(this, dir));
         }
 
         public IFile GetFile(string fileName)
